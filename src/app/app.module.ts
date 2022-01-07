@@ -20,6 +20,8 @@ import { TopbarComponent } from './componentes/topbar/topbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './componentes/footer/footer.component';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 const materialModules = [
@@ -32,6 +34,7 @@ const materialModules = [
   DragDropModule,
   MatCheckboxModule,
   MatButtonModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
@@ -50,6 +53,7 @@ const materialModules = [
     NgbModule,
     ...materialModules,
     NgxWebstorageModule.forRoot(),
+    HttpClientModule,
   ], exports: [
     ...materialModules
   ],

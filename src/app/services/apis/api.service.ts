@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
+import { Observable } from 'rxjs';
 import { Factura } from 'src/app/models/factura';
 
 
@@ -19,8 +20,8 @@ export class ApiService {
   /**
    * Devuelve todas las facturas en la base de datos
    */
-  listarFacturas(){
+  listarFacturas(): Observable<Factura[]>{
     let direccion = this.url + 'facturas';
-    this.http.get<Factura>(direccion);
+    return this.http.get<Factura[]>(direccion);
   }
 }
