@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+    --firstcolor: #d81b60;
+    --firstcolor-hover: #fc347d;
+    --firstcolor-section: rgba(59, 64, 142, 0.281);
+    --theme-color: rgb(255, 255, 255);
+    --dimen-tooltip: -70px;
+  }
+
+  .navbar-svg-shadow{
+    filter: drop-shadow( 0 2px 2px rgba(0, 0, 0, .7));
+  }
+
+  .svg-shadow {
+    filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+  }
+
+  .centrado-horizontal{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .centrado-vertical{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

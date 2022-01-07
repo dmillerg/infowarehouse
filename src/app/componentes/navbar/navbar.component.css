@@ -1,0 +1,37 @@
+.navbar-mine {
+    width: 100%;
+    height: 80px;
+    background-color: var(--firstcolor);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.img-icon{
+    width: 60px;
+    height: 60px;
+}
+
+.container-image{
+    clip-path: polygon(0% 0%, 100% 0, 100% 70%, 50% 100%, 0 70%);
+    background-color: var(--firstcolor);
+    height: 160px;
+    width: 160px;
+    cursor: pointer;
+}
+
+.menu-item{
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: ease-in-out .3s;
+}
+
+.menu-item:hover{
+    background-color: var(--firstcolor-hover);
+    transition: ease-in-out .3s;
+}
+
+.menu-item.active{
+    background-color: var(--firstcolor-hover);
+}
