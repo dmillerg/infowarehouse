@@ -9,18 +9,29 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort'; 
+import { MatSortModule } from '@angular/material/sort';
 import { FacturasComponent } from './componentes/pages/facturas/facturas.component';
 import { InicioComponent } from './componentes/pages/inicio/inicio.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TopbarComponent } from './componentes/topbar/topbar.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from './componentes/footer/footer.component';
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 
 const materialModules = [
   MatIconModule,
   MatTooltipModule,
+  MatTooltipModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  DragDropModule,
+  MatCheckboxModule,
+  MatButtonModule,
 ];
 
 @NgModule({
@@ -28,7 +39,9 @@ const materialModules = [
     AppComponent,
     NavbarComponent,
     FacturasComponent,
-    InicioComponent
+    InicioComponent,
+    TopbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +50,6 @@ const materialModules = [
     NgbModule,
     ...materialModules,
     NgxWebstorageModule.forRoot(),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    DragDropModule,
   ], exports: [
     ...materialModules
   ],

@@ -1,0 +1,26 @@
+.btn-top {
+   height: 80px;
+   width: 95%;
+   border: 1px solid var(--firstcolor);
+   color: var(--firstcolor);
+   text-shadow: 2px 2px rgba(0, 0, 0, 0.4);
+   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+   margin-bottom: 10px;
+   transition: ease-in-out .3s;
+   background-color: var(--theme-color);
+
+}
+
+.btn-top:hover{
+    background-color: var(--theme-color-section);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+    transition: ease-in-out .3s;
+}
+
+.container{
+    padding-block: 20px;
+}
+
+.bi{
+    margin-right: 10px;
+}

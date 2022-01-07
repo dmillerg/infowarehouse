@@ -6,7 +6,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --firstcolor: #d81b60;
     --firstcolor-hover: #fc347d;
     --firstcolor-section: rgba(59, 64, 142, 0.281);
-    --theme-color: rgb(255, 255, 255);
+    --theme-color: rgb(44, 44, 44);
+    --theme-color-section: rgb(60, 60, 60);
     --dimen-tooltip: -70px;
   }
 
@@ -30,4 +31,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.relative{
+    position: relative;
 }
