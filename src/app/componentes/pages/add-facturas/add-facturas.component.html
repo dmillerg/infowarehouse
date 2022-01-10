@@ -1,0 +1,43 @@
+<mat-stepper class="mat-elevation-z8">
+    <mat-step label="Factura" state="note">
+      <form class="text-white">
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Empresa</mat-label>
+                <input matInput placeholder="empresa" name="empresa" [(ngModel)]="empresa">
+                <mat-icon matSuffix>factory</mat-icon>
+                <mat-hint>Ingrese su empresa</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Codigo</mat-label>
+                <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="codigo">
+                <mat-icon matSuffix>code</mat-icon>
+                <mat-hint>Ingrese su codigo</mat-hint>
+            </mat-form-field>
+        </p> 
+      </form>
+      <div>
+        <button mat-button matStepperNext class="text-white" (click)="addFactura()" [disabled]="empresa.length==0 || codigo.length==0">Siguiente</button>
+      </div>
+    </mat-step>
+    <mat-step label="Informe de recepcion" state="chat">
+      <p>Socialize with each other.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Tarjeta estiba">
+      <p>You're welcome.</p>
+    </mat-step>
+  
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="note">
+      <mat-icon>notes</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="chat">
+      <mat-icon>forum</mat-icon>
+    </ng-template>
+  </mat-stepper>

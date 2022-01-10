@@ -1,4 +1,19 @@
-<div class="footer-mine relative">
+<div class="footer-mine relative ">
+    <div class="row-mine"></div>
+    <div class="centrado-horizontal login-bar">
+        <!-- <button mat-raised-button [matMenuTriggerFor]="menu" #menuTrigger><i class="bi bi-person"></i> Login</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialog()">Open dialog</button>
+          </mat-menu> -->
+          <button mat-button class="text-white" (click)="openDialog(messageButton=='Login' ? '' : messageButton )"><i class="bi bi-person"></i> {{messageButton}}</button>
+    </div>
+
+    <div class="redes centrado-horizontal text-white">
+        <i class="bi bi-facebook svg-shadow"></i>
+        <i class="bi bi-google svg-shadow"></i>
+        <i class="bi bi-instagram svg-shadow"></i>
+    </div>
+
     <div class="copyrigth absolute centrado-vertical">
         <label class="text-white"><span>copyrigth 2022</span> Todos los derechos reservados</label>
         <p class="text-white">Author Kuroko</p>

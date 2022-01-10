@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-topbar',
@@ -16,10 +16,17 @@ export class TopbarComponent implements OnInit {
   @Input() tooltip_delete_if: boolean = true;
   @Input() tooltip_update_if: boolean = true;
   @Input() tooltip_list_if: boolean = true;
-  
+
+  @Output() emisor: EventEmitter<any> = new EventEmitter();
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  action(e: any) {
+    this.emisor.emit(e.target.innerText);
+  }
 }

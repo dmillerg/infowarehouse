@@ -1,0 +1,30 @@
+<mat-dialog-content>
+    <div *ngIf="data.length==0">
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="usuario" name="usuario" [(ngModel)]="usuario">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint>Ingrese su usuario</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Contraseña" type="password" name="password" [(ngModel)]="password">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-hint>Ingrese su contraseña</mat-hint>
+            </mat-form-field>
+        </p>
+    </div>
+    <div *ngIf="data.length>0">
+        <p>
+            <mat-label>Esta a punto de desautenticarse de la pagina esta seguro de lo que va a hacer</mat-label>
+        </p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button class="btn-firtcolor" (click)="data.length==0 ? login() : logout()"
+        [disabled]="(usuario.length==0 || password.length == 0) && data.length == 0">Aceptar</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+</mat-dialog-actions>

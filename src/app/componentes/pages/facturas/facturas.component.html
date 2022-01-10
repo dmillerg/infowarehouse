@@ -1,4 +1,4 @@
-<app-topbar></app-topbar>
+<app-topbar (emisor)="action($event)"></app-topbar>
 <div class="relative">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table">
     <!-- Checkbox Column -->
@@ -24,7 +24,7 @@
     <!-- Fecha Column -->
     <ng-container matColumnDef="fecha">
       <th mat-header-cell *matHeaderCellDef> Fecha </th>
-      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.fecha | date: 'EEEE, MMMM, dd, YYYY - hh:mm a'}} </td>
     </ng-container>
 
     <!-- Codigo Column -->
@@ -44,3 +44,5 @@
     <p class="text-firstcolor">Cargando...</p>
   </div>
 </div>
+
+<app-add-facturas (emisor)="loadFacturas()"></app-add-facturas>

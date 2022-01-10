@@ -36,6 +36,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<Factura>(this.facturas);
   selection = new SelectionModel<Factura>(true, []);
   loading: boolean = true;
+  messageTable: string = '';
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -46,6 +47,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
+    console.log(this.selection.selected);
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
@@ -72,14 +74,40 @@ export class FacturasComponent implements AfterViewInit, OnInit {
   loadFacturas() {
     this.loading = true;
     this.api.listarFacturas().subscribe((result) => {
-      this.dataSource = new MatTableDataSource<Factura>(result);
-      this.selection = new SelectionModel<Factura>(true, []);
+      if (result.length > 0) {
+        this.dataSource = new MatTableDataSource<Factura>(result);
+        this.selection = new SelectionModel<Factura>(true, []);
+        this.loading = false;
+      }
+      else {
+        this.dataSource = new MatTableDataSource<Factura>([]);
+        this.selection = new SelectionModel<Factura>(true, []);
+        this.loading = false;
+        this.messageTable = 'No hay facturas disponibles';
+      }
+    }, error => {
       this.loading = false;
+      this.messageTable = error.error;
     });
   }
 
   ngAfterViewInit(): void {
   }
 
+  borrar(factura: Factura) {
+    this.api.borrarFacturas(factura.codigo).subscribe((result) => {
+      this.loadFacturas();
+    })
+  }
 
+  action(e: any) {
+    console.log(e);
+    switch (e) {
+      case 'Eliminar':
+        this.selection.selected.forEach((r)=>{
+          this.borrar(r);
+        });
+        break;
+    }
+  }
 }
