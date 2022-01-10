@@ -1,57 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 :root {
-    --firstcolor: #d81b60;
-    --firstcolor-hover: #a72253;
-    --firstcolor-section: rgba(59, 64, 142, 0.281);
-    --theme-color: rgb(44, 44, 44);
-    --theme-color-section: rgb(60, 60, 60);
-    --dimen-tooltip: -70px;
-  }
-
-  .navbar-svg-shadow{
-    filter: drop-shadow( 0 2px 2px rgba(0, 0, 0, .7));
-  }
-
-  .svg-shadow {
-    filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
-  }
-
-  .centrado-horizontal{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-  }
-
-  .centrado-vertical{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  --firstcolor: #d81b60;
+  --firstcolor-hover: rgba(0, 0, 0, .4);
+  --firstcolor-section: rgba(59, 64, 142, 0.281);
+  --theme-color: rgb(44, 44, 44);
+  --theme-color-section: rgb(60, 60, 60);
+  --dimen-tooltip: -70px;
 }
 
-.absolute{
-    position: absolute;
+.navbar-svg-shadow {
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .7));
 }
 
-.relative{
-    position: relative;
+.svg-shadow {
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
 }
 
-.text-firstcolor{
-    color: var(--firstcolor);
+.centrado-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.btn-firstcolor{
+.centrado-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-firstcolor {
+  color: var(--firstcolor);
+}
+
+.btn-firstcolor {
   background-color: var(--firstcolor);
   color: white;
   transition: ease-in-out .3s;
 }
 
-.btn-firstcolor:hover{
+.btn-firstcolor:hover {
   background-color: var(--firstcolor-hover);
   color: white;
   transition: ease-in-out .3s;

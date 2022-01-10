@@ -32,6 +32,7 @@ import { FormsModule } from '@angular/forms';
 import { AddFacturasComponent } from './componentes/pages/add-facturas/add-facturas.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatRippleModule } from '@angular/material/core';
 
 
 const materialModules = [
@@ -49,6 +50,7 @@ const materialModules = [
   MatFormFieldModule,
   MatInputModule,
   MatStepperModule,
+  MatRippleModule,
 ];
 
 @NgModule({
