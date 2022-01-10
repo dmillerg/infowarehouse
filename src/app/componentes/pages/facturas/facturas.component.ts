@@ -1,33 +1,38 @@
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Factura } from 'src/app/models/factura';
 import { ApiService } from 'src/app/services/apis/api.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
+const listAnimation = trigger('listAnimation', [
+  transition('* <=> *', [
+    query(':enter',
+      [style({ transform: 'translateX(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateX(0%)', opacity: 1 })))],
+      { optional: true }
+    ),
+    query(':leave',
+      animate('200ms', style({ opacity: 0 })),
+      { optional: true }
+    )
+  ])
+]);
 @Component({
   selector: 'app-facturas',
   templateUrl: './facturas.component.html',
-  styleUrls: ['./facturas.component.css']
+  styleUrls: ['./facturas.component.css'],
+  animations: [
+    trigger('scaleAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateX(-50%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateX(0%)', opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateX(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 })),
+      ]),
+    ]),
+  ]
 })
 
 export class FacturasComponent implements AfterViewInit, OnInit {
@@ -37,6 +42,9 @@ export class FacturasComponent implements AfterViewInit, OnInit {
   selection = new SelectionModel<Factura>(true, []);
   loading: boolean = true;
   messageTable: string = '';
+
+  table: boolean = true;
+  addform: boolean = false;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -104,9 +112,17 @@ export class FacturasComponent implements AfterViewInit, OnInit {
     console.log(e);
     switch (e) {
       case 'Eliminar':
-        this.selection.selected.forEach((r)=>{
+        this.selection.selected.forEach((r) => {
           this.borrar(r);
         });
+        break;
+      case 'Agregar':
+        this.table = false;
+        this.addform = true;
+        break;
+      case 'Listar':
+        this.table = true;
+        this.addform = false;
         break;
     }
   }

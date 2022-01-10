@@ -1,5 +1,5 @@
 <app-topbar (emisor)="action($event)"></app-topbar>
-<div class="relative">
+<div class="relative" [@scaleAnimation]="'enter'" *ngIf='table'>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
@@ -40,9 +40,10 @@
 
   </table>
   <div class="loading centrado-vertical absolute" *ngIf="loading">
-    <mat-spinner [diameter]="40" ></mat-spinner>
+    <mat-spinner [diameter]="40"></mat-spinner>
     <p class="text-firstcolor">Cargando...</p>
   </div>
 </div>
-
-<app-add-facturas (emisor)="loadFacturas()"></app-add-facturas>
+<div [@scaleAnimation]="'enter'" *ngIf='addform'>
+  <app-add-facturas (emisor)="loadFacturas()"></app-add-facturas>
+</div>
