@@ -1,0 +1,45 @@
+<form class="text-white centrado-vertical">
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Empresa</mat-label>
+            <input matInput placeholder="empresa" name="empresa" [(ngModel)]="empresa">
+            <mat-icon matSuffix>factory</mat-icon>
+            <mat-hint>Ingrese su empresa</mat-hint>
+        </mat-form-field>
+        <!-- </p>
+    <p> -->
+        <mat-form-field appearance="legacy">
+            <mat-label>Codigo</mat-label>
+            <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="codigo">
+            <mat-icon matSuffix>code</mat-icon>
+            <mat-hint>Ingrese su codigo</mat-hint>
+        </mat-form-field>
+        <!-- </p>
+    <p> -->
+        <mat-form-field appearance="legacy">
+            <mat-label>No. de factura</mat-label>
+            <input matInput placeholder="factura" name="factura" [(ngModel)]="factura">
+            <mat-icon matSuffix>assignment</mat-icon>
+            <mat-hint>Ingrese el numero de la factura</mat-hint>
+        </mat-form-field>
+        <!-- </p>
+    <p> -->
+        <mat-form-field appearance="legacy">
+            <mat-label>Entregado por:</mat-label>
+            <input matInput placeholder="Entregado por..." name="entregado" [(ngModel)]="entregado">
+            <mat-icon matSuffix>delivery_dining</mat-icon>
+            <mat-hint>Ingrese el nombre de la persona que lo entrego</mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Facturado por:</mat-label>
+            <input matInput placeholder="Facturado por..." name="facturado" [(ngModel)]="facturado">
+            <mat-icon matSuffix>receipt</mat-icon>
+            <mat-hint>Ingrese el nombre de la persona que lo facturo</mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <button mat-button (click)="addProducto()">Agregar producto</button>
+    </p>
+</form>

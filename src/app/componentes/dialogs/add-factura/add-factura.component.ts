@@ -16,11 +16,15 @@ export class AddFacturaComponent implements OnInit {
   precio: string = '';
   precio_unitario: string = '';
 
-  constructor(private storage: SessionStorageService, private api: ApiService, public dialogRef: MatDialogRef<FooterComponent>, @Inject(MAT_DIALOG_DATA) public data: Producto) {
+  constructor(private storage: SessionStorageService,
+    private api: ApiService,
+    public dialogRef: MatDialogRef<FooterComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Producto,
+    @Inject(MAT_DIALOG_DATA) public actualizar: string) {
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   addOrUpdate() {
@@ -28,11 +32,11 @@ export class AddFacturaComponent implements OnInit {
     form.append('nombre', this.nombre);
     form.append('precio', this.precio);
     form.append('precio_unitario', this.precio_unitario);
-    if (this.data == undefined) {
+    if (this.actualizar == undefined) {
       this.api.addProducto(form).subscribe((result) => {
         this.dialogRef.close(result);
       });
-    }else{
+    } else {
       this.api.actualizarProducto(form, this.data.id).subscribe((result) => {
         this.dialogRef.close(result);
       });
