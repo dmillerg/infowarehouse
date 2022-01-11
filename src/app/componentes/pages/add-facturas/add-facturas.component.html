@@ -1,6 +1,6 @@
 <mat-stepper class="mat-elevation-z8">
     <mat-step label="Factura" state="note">
-        <form class="text-white">
+        <form class="text-white centrado-vertical">
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Empresa</mat-label>
@@ -8,14 +8,41 @@
                     <mat-icon matSuffix>factory</mat-icon>
                     <mat-hint>Ingrese su empresa</mat-hint>
                 </mat-form-field>
-            </p>
-            <p>
+                <!-- </p>
+            <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Codigo</mat-label>
                     <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="codigo">
                     <mat-icon matSuffix>code</mat-icon>
                     <mat-hint>Ingrese su codigo</mat-hint>
                 </mat-form-field>
+                <!-- </p>
+            <p> -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>No. de factura</mat-label>
+                    <input matInput placeholder="factura" name="factura" [(ngModel)]="factura">
+                    <mat-icon matSuffix>assignment</mat-icon>
+                    <mat-hint>Ingrese el numero de la factura</mat-hint>
+                </mat-form-field>
+                <!-- </p>
+            <p> -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Entregado por:</mat-label>
+                    <input matInput placeholder="Entregado por..." name="entregado" [(ngModel)]="entregado">
+                    <mat-icon matSuffix>delivery_dining</mat-icon>
+                    <mat-hint>Ingrese el nombre de la persona que lo entrego</mat-hint>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Facturado por:</mat-label>
+                    <input matInput placeholder="Facturado por..." name="facturado" [(ngModel)]="facturado">
+                    <mat-icon matSuffix>receipt</mat-icon>
+                    <mat-hint>Ingrese el nombre de la persona que lo facturo</mat-hint>
+                </mat-form-field>
+            </p>
+            <p>
+                <button mat-button (click)="addProducto()">Agregar producto</button>
             </p>
         </form>
         <div>
@@ -24,7 +51,10 @@
         </div>
     </mat-step>
     <mat-step label="Informe de recepcion" state="chat">
-        <form class="text-white">
+        <form class="text-white centrado-vertical">
+            <p>
+                <mat-icon>document_scanner</mat-icon>
+            </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Empresa</mat-label>
@@ -32,7 +62,7 @@
                     <mat-icon matSuffix>factory</mat-icon>
                     <mat-hint>Ingrese su empresa</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Almacen</mat-label>
@@ -40,7 +70,7 @@
                     <mat-icon matSuffix>warehouse</mat-icon>
                     <mat-hint>Ingrese el almacen</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Codigo</mat-label>
@@ -48,7 +78,7 @@
                     <mat-icon matSuffix>code</mat-icon>
                     <mat-hint>Ingrese su codigo</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Recepcionado por</mat-label>
@@ -64,7 +94,7 @@
                     <mat-icon matSuffix>tag</mat-icon>
                     <mat-hint>Ingrese el numero</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Entidad suministradora</mat-label>
@@ -72,7 +102,7 @@
                     <mat-icon matSuffix>source</mat-icon>
                     <mat-hint>Ingrese la entidad suministradora</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Factura</mat-label>
@@ -80,7 +110,7 @@
                     <mat-icon matSuffix>assignment</mat-icon>
                     <mat-hint>Ingrese la factura</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Codigo del producto</mat-label>
@@ -96,7 +126,7 @@
                     <mat-icon matSuffix>description</mat-icon>
                     <mat-hint>Ingrese la descripcion</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Precio</mat-label>
@@ -104,7 +134,7 @@
                     <mat-icon matSuffix>price_change</mat-icon>
                     <mat-hint>Ingrese el precio</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Importe</mat-label>
@@ -112,7 +142,7 @@
                     <mat-icon matSuffix>payments</mat-icon>
                     <mat-hint>Ingrese el importe</mat-hint>
                 </mat-form-field>
-            <!-- </p>
+                <!-- </p>
             <p> -->
                 <mat-form-field appearance="legacy">
                     <mat-label>Saldo en existencia</mat-label>
@@ -135,7 +165,7 @@
             <button mat-button matStepperNext>Siguiente</button>
         </div>
     </mat-step>
-    <mat-step label="Tarjeta estiba">
+    <mat-step label="Tarjeta estiba" class="text-white">
         <p>You're welcome.</p>
     </mat-step>
 

@@ -33,6 +33,7 @@ import { AddFacturasComponent } from './componentes/pages/add-facturas/add-factu
 import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatRippleModule } from '@angular/material/core';
+import { AddFacturaComponent } from './componentes/dialogs/add-factura/add-factura.component';
 
 
 const materialModules = [
@@ -63,6 +64,7 @@ const materialModules = [
     FooterComponent,
     DialogFromUsers,
     AddFacturasComponent,
+    AddFacturaComponent,
   ],
   imports: [
     BrowserModule,

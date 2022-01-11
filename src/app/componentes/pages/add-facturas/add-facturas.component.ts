@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/apis/api.service';
+import { AddFacturaComponent } from '../../dialogs/add-factura/add-factura.component';
 
 @Component({
   selector: 'app-add-facturas',
@@ -11,8 +13,11 @@ export class AddFacturasComponent implements OnInit {
   @Output() emisor: EventEmitter<any> = new EventEmitter();
   empresa: string = '';
   codigo: string = '';
+  factura: string = '';
+  entregado: string = '';
+  facturado: string = '';
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +29,11 @@ export class AddFacturasComponent implements OnInit {
     this.api.addFactura(formData).subscribe((result) => {
       this.emisor.emit('factura creada');
     })
+  }
+
+  addProducto(){
+    let dialogRef = this.dialog.open(AddFacturaComponent, {
+      data: undefined
+    });
   }
 }

@@ -57,10 +57,14 @@ export class DialogFromUsers {
     });
   }
 
-  logout(){
-    this.api.logout().subscribe((result)=>{
+  logout() {
+    this.api.logout().subscribe((result) => {
       this.storage.clear('user');
       this.dialogRef.close('Login');
     })
+  }
+
+  submit() {
+    document.getElementById('submit')?.click();
   }
 }

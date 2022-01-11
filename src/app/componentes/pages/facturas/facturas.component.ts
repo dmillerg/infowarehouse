@@ -1,6 +1,7 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Factura } from 'src/app/models/factura';
 import { ApiService } from 'src/app/services/apis/api.service';
@@ -25,11 +26,11 @@ const listAnimation = trigger('listAnimation', [
     trigger('scaleAnimation', [
       transition(':enter', [
         style({ transform: 'translateX(-50%)', opacity: 0 }),
-        animate('500ms', style({ transform: 'translateX(0%)', opacity: 1 })),
+        animate('.3s', style({ transform: 'translateX(0%)', opacity: 1 })),
       ]),
       transition(':leave', [
         style({ transform: 'translateX(0)', opacity: 1 }),
-        animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 })),
+        animate('.3s', style({ transform: 'translateX(50%)', opacity: 0 })),
       ]),
     ]),
   ]
@@ -72,7 +73,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.empresa + 1}`;
   }
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -95,6 +96,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
       }
     }, error => {
       this.loading = false;
+      console.log(this.messageTable);
       this.messageTable = error.error;
     });
   }
@@ -126,4 +128,10 @@ export class FacturasComponent implements AfterViewInit, OnInit {
         break;
     }
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

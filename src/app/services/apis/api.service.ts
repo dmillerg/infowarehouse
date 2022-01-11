@@ -4,6 +4,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { Factura } from 'src/app/models/factura';
 import { Login } from 'src/app/models/login';
+import { Producto } from 'src/app/models/producto';
 import { Usuario } from 'src/app/models/usuario';
 
 
@@ -55,14 +56,60 @@ export class ApiService {
     let direccion = this.url + 'facturas/' + codigo;
     return this.http.delete(direccion);
   }
-  
- /**
-  * Se adiciona una factura
-  * @param formData datos de la factura
-  * @returns 
-  */
+
+  /**
+   * Se adiciona una factura
+   * @param formData datos de la factura
+   * @returns 
+   */
   addFactura(formData: FormData) {
     let direccion = this.url + 'facturas';
+    formData.append('token', this.storage.retrieve('user').token);
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtiene todos los tipos de productos almacenados en la base de datos
+   * @returns 
+   */
+  listarProducto(): Observable<Producto[]> {
+    let direccion = this.url + 'productos';
+    return this.http.get<Producto[]>(direccion);
+  }
+
+  /**
+   * Guarda un nuevo producto en la db
+   * @param formData datos del producto 
+   * @returns 
+   */
+  addProducto(formData: FormData) {
+    let direccion = this.url + 'productos';
+    formData.append('token', this.storage.retrieve('user').token);
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Eliminar un producto de la db
+   * @param id del producto a borrar
+   * @returns 
+   */
+  borrarProducto(id: number = -1) {
+    let direccion = this.url + 'productos/' + id.toString();
+    const headers = { 'content-type': 'application/json' };
+    const params = {
+      token: this.storage.retrieve('user').token,
+    };
+    return this.http.delete(direccion, { headers: headers, params: params });
+  }
+
+  /**
+   * Actualiza los datos de un producto
+   * @param formData datos del producto
+   * @param id del producto
+   * @returns 
+   */
+  actualizarProducto(formData: FormData, id: number = -1) {
+    let direccion = this.url + 'productos/' + id.toString();
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
