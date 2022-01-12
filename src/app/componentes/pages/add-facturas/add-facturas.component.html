@@ -1,13 +1,13 @@
 <mat-stepper class="mat-elevation-z8">
     <mat-step label="Factura" state="note">
-        <app-factura [empresa]="empresa" [codigo]="codigo" [factura]="factura" [entregado]="entregado" [facturado]="facturado"></app-factura>
+        <app-factura [data]="data"></app-factura>
         <div>
             <button mat-button matStepperNext class="text-white" (click)="addFactura()"
-                [disabled]="empresa.length==0 || codigo.length==0">Siguiente</button>
+                [disabled]="data.empresa.length==0 || data.codigo.length==0">Siguiente</button>
         </div>
     </mat-step>
     <mat-step label="Informe de recepcion" state="chat">
-       <app-informe [empresa]="empresa" [codigo]="codigo" [factura]="factura" [entregado]="entregado" [facturado]="facturado"></app-informe>
+       <app-informe [data]="data"></app-informe>
         <div class="text-white">
             <button mat-button matStepperPrevious>Atras</button>
             <button mat-button matStepperNext>Siguiente</button>

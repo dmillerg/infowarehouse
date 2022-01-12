@@ -6,11 +6,11 @@ import { ApiService } from 'src/app/services/apis/api.service';
 import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
-  selector: 'app-add-factura',
-  templateUrl: './add-factura.component.html',
-  styleUrls: ['./add-factura.component.css']
+  selector: 'app-add-producto',
+  templateUrl: './add-producto.component.html',
+  styleUrls: ['./add-producto.component.css']
 })
-export class AddFacturaComponent implements OnInit {
+export class AddProductoComponent implements OnInit {
 
   nombre: string = '';
   precio: string = '';
@@ -19,8 +19,7 @@ export class AddFacturaComponent implements OnInit {
   constructor(private storage: SessionStorageService,
     private api: ApiService,
     public dialogRef: MatDialogRef<FooterComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Producto,
-    @Inject(MAT_DIALOG_DATA) public actualizar: string) {
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
@@ -32,13 +31,19 @@ export class AddFacturaComponent implements OnInit {
     form.append('nombre', this.nombre);
     form.append('precio', this.precio);
     form.append('precio_unitario', this.precio_unitario);
-    if (this.actualizar == undefined) {
+    if (this.data.accion == 'add') {
       this.api.addProducto(form).subscribe((result) => {
         this.dialogRef.close(result);
       });
-    } else {
+    } else if(this.data.accion == 'update'){
       this.api.actualizarProducto(form, this.data.id).subscribe((result) => {
         this.dialogRef.close(result);
+      });
+    }else{
+      this.dialogRef.close({
+        nombre: this.nombre,
+        precio: this.precio,
+        precio_unitario: this.precio_unitario,
       });
     }
   }

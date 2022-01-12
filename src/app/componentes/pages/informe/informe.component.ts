@@ -7,11 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InformeComponent implements OnInit {
 
-  @Input() empresa: string = '';
-  @Input() codigo: string = '';
-  @Input() factura: string = '';
-  @Input() entregado: string = '';
-  @Input() facturado: string = '';
+  @Input() data: any = {
+    empresa: '',
+    codigo: '',
+    factura: '',
+    entregado: '',
+    facturado: '',
+  };
 
   constructor() { }
 

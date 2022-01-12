@@ -33,9 +33,10 @@ import { AddFacturasComponent } from './componentes/pages/add-facturas/add-factu
 import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatRippleModule } from '@angular/material/core';
-import { AddFacturaComponent } from './componentes/dialogs/add-factura/add-factura.component';
+import { AddProductoComponent } from './componentes/dialogs/add-producto/add-producto.component';
 import { FacturaComponent } from './componentes/pages/factura/factura.component';
 import { InformeComponent } from './componentes/pages/informe/informe.component';
+import {MatListModule} from '@angular/material/list';
 
 
 const materialModules = [
@@ -54,6 +55,7 @@ const materialModules = [
   MatInputModule,
   MatStepperModule,
   MatRippleModule,
+  MatListModule,
 ];
 
 @NgModule({
@@ -66,7 +68,7 @@ const materialModules = [
     FooterComponent,
     DialogFromUsers,
     AddFacturasComponent,
-    AddFacturaComponent,
+    AddProductoComponent,
     FacturaComponent,
     InformeComponent,
   ],

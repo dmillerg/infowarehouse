@@ -2,7 +2,7 @@
     <p>
         <mat-form-field appearance="legacy">
             <mat-label>Empresa</mat-label>
-            <input matInput placeholder="empresa" name="empresa" [(ngModel)]="empresa">
+            <input matInput placeholder="empresa" name="empresa" [(ngModel)]="data.empresa">
             <mat-icon matSuffix>factory</mat-icon>
             <mat-hint>Ingrese su empresa</mat-hint>
         </mat-form-field>
@@ -10,7 +10,7 @@
     <p> -->
         <mat-form-field appearance="legacy">
             <mat-label>Codigo</mat-label>
-            <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="codigo">
+            <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="data.codigo">
             <mat-icon matSuffix>code</mat-icon>
             <mat-hint>Ingrese su codigo</mat-hint>
         </mat-form-field>
@@ -18,7 +18,7 @@
     <p> -->
         <mat-form-field appearance="legacy">
             <mat-label>No. de factura</mat-label>
-            <input matInput placeholder="factura" name="factura" [(ngModel)]="factura">
+            <input matInput placeholder="factura" name="factura" [(ngModel)]="data.factura">
             <mat-icon matSuffix>assignment</mat-icon>
             <mat-hint>Ingrese el numero de la factura</mat-hint>
         </mat-form-field>
@@ -26,20 +26,39 @@
     <p> -->
         <mat-form-field appearance="legacy">
             <mat-label>Entregado por:</mat-label>
-            <input matInput placeholder="Entregado por..." name="entregado" [(ngModel)]="entregado">
+            <input matInput placeholder="Entregado por..." name="entregado" [(ngModel)]="data.entregado">
             <mat-icon matSuffix>delivery_dining</mat-icon>
             <mat-hint>Ingrese el nombre de la persona que lo entrego</mat-hint>
         </mat-form-field>
-    </p>
-    <p>
+        <!-- </p>
+    <p> -->
         <mat-form-field appearance="legacy">
             <mat-label>Facturado por:</mat-label>
-            <input matInput placeholder="Facturado por..." name="facturado" [(ngModel)]="facturado">
+            <input matInput placeholder="Facturado por..." name="facturado" [(ngModel)]="data.facturado">
             <mat-icon matSuffix>receipt</mat-icon>
             <mat-hint>Ingrese el nombre de la persona que lo facturo</mat-hint>
         </mat-form-field>
     </p>
     <p>
-        <button mat-button (click)="addProducto()">Agregar producto</button>
+        <mat-label>Productos de la factura</mat-label>
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of productos; let i = index" [attr.data-index]="i" role="listitem">
+                <div class="listitem">
+                    <p>{{i + 1}}.</p>
+                    <p>{{item.nombre}}</p>
+                    <p> ${{item.precio}}</p>
+                    <p>
+                        <button mat-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </p>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </p>
+    <p>
+        <button mat-button (click)="addProducto()">
+            <mat-icon>playlist_add</mat-icon> Agregar producto
+        </button>
     </p>
 </form>
