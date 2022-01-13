@@ -1,64 +1,144 @@
-<form class="text-white centrado-vertical">
-    <p>
-        <mat-form-field appearance="legacy">
-            <mat-label>Empresa</mat-label>
-            <input matInput placeholder="empresa" name="empresa" [(ngModel)]="data.empresa">
-            <mat-icon matSuffix>factory</mat-icon>
-            <mat-hint>Ingrese su empresa</mat-hint>
-        </mat-form-field>
-        <!-- </p>
-    <p> -->
-        <mat-form-field appearance="legacy">
-            <mat-label>Codigo</mat-label>
-            <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="data.codigo">
-            <mat-icon matSuffix>code</mat-icon>
-            <mat-hint>Ingrese su codigo</mat-hint>
-        </mat-form-field>
-        <!-- </p>
-    <p> -->
-        <mat-form-field appearance="legacy">
-            <mat-label>No. de factura</mat-label>
-            <input matInput placeholder="factura" name="factura" [(ngModel)]="data.factura">
-            <mat-icon matSuffix>assignment</mat-icon>
-            <mat-hint>Ingrese el numero de la factura</mat-hint>
-        </mat-form-field>
-        <!-- </p>
-    <p> -->
-        <mat-form-field appearance="legacy">
-            <mat-label>Entregado por:</mat-label>
-            <input matInput placeholder="Entregado por..." name="entregado" [(ngModel)]="data.entregado">
-            <mat-icon matSuffix>delivery_dining</mat-icon>
-            <mat-hint>Ingrese el nombre de la persona que lo entrego</mat-hint>
-        </mat-form-field>
-        <!-- </p>
-    <p> -->
-        <mat-form-field appearance="legacy">
-            <mat-label>Facturado por:</mat-label>
-            <input matInput placeholder="Facturado por..." name="facturado" [(ngModel)]="data.facturado">
-            <mat-icon matSuffix>receipt</mat-icon>
-            <mat-hint>Ingrese el nombre de la persona que lo facturo</mat-hint>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-label>Productos de la factura</mat-label>
-        <mat-list role="list">
-            <mat-list-item *ngFor="let item of productos; let i = index" [attr.data-index]="i" role="listitem">
-                <div class="listitem">
-                    <p>{{i + 1}}.</p>
-                    <p>{{item.nombre}}</p>
-                    <p> ${{item.precio}}</p>
-                    <p>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>
+            <mat-label>Productos de la factura</mat-label>
+            <button style="position: absolute;right: 0;top: 0;" mat-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
+            <mat-list role="list">
+                <mat-list-item *ngFor="let item of productos; let i = index" [attr.data-index]="i" role="listitem">
+                    <div class="centrado-horizontal">
+                        <p>{{i + 1}}.</p>
+                        <p>{{item.nombre}}</p>
+                        <p> ${{item.precio}}</p>
+                        <p>
+                            <button mat-button (click)="deleteProducto(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </p>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </p>
+        <p>
+            <button mat-button (click)="addProducto()">
+                <mat-icon>playlist_add</mat-icon> Agregar producto
+            </button>
+        </p>
+        <p>La factura debe tener al menos un producto asignado para ser valida.</p>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <form class="text-white centrado-vertical">
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Empresa</mat-label>
+                    <input matInput placeholder="empresa" name="empresa" [(ngModel)]="data.empresa">
+                    <mat-icon matSuffix>factory</mat-icon>
+                    <mat-hint>Ingrese su empresa</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Codigo</mat-label>
+                    <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="data.codigo">
+                    <mat-icon matSuffix>code</mat-icon>
+                    <mat-hint>Ingrese su codigo</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>No. de factura</mat-label>
+                    <input matInput placeholder="factura" name="factura" [(ngModel)]="data.factura">
+                    <mat-icon matSuffix>assignment</mat-icon>
+                    <mat-hint>Ingrese el numero de la factura</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Entregado por:</mat-label>
+                    <input matInput placeholder="Entregado por..." name="entregado" [(ngModel)]="data.entregado">
+                    <mat-icon matSuffix>delivery_dining</mat-icon>
+                    <mat-hint>Ingrese el nombre de la persona que lo entrego</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Facturado por:</mat-label>
+                    <input matInput placeholder="Facturado por..." name="facturado" [(ngModel)]="data.facturado">
+                    <mat-icon matSuffix>receipt</mat-icon>
+                    <mat-hint>Ingrese el nombre de la persona que lo facturo</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Entidad suministradora</mat-label>
+                    <input matInput placeholder="Entidad suministradora" name="entidad" [(ngModel)]="data.entidad">
+                    <mat-icon matSuffix>source</mat-icon>
+                    <mat-hint>Ingrese la entidad suministradora</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Almacen</mat-label>
+                    <input matInput placeholder="Almacen" name="almacen" [(ngModel)]="data.almacen">
+                    <mat-icon matSuffix>warehouse</mat-icon>
+                    <mat-hint>Ingrese el almacen</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Importe total</mat-label>
+                    <input matInput disabled placeholder="Importe total" name="importe" [(ngModel)]="data.importe">
+                    <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
+            </p>
+            <div class="centrado-horizontal">
+                <button type="button" mat-button (click)="drawer.toggle()">
+                    Productos ({{productos.length}})
+                </button>
+                <button type="button" mat-button (click)="previsualizar = !previsualizar">
+                    {{previsualizar ? 'Esconder' : 'Previsualizar'}}
+                </button>
+            </div>
+            <p class="centrado-horizontal" [@scaleAnimation]="'enter'" *ngIf="previsualizar" >
+                <mat-card>
+                    <mat-card-title>Factura de Orden de Venta #HET1 - {{data.factura}}</mat-card-title>
+                    <mat-card-subtitle>
+                        <p>Entidad suministradora: {{data.entidad}}</p>
+                        <p>Codigo: {{data.codigo}}</p>
+                        <p>Empresa: {{data.empresa}}</p>
+                        <p>Almacen: {{data.almacen}}</p>
+                    </mat-card-subtitle>
+                    <mat-card-content>
+                        <div class="centrado-horizontal table text-white">
+                            <p class="table-item">Entregado por: {{data.entregado}}</p>
+                            <p class="table-item">Facturado por: {{data.facturado}}</p>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row table-header">
+                                <div class="col-sm-1">Cant. Orden</div>
+                                <div class="col-sm-1">Cant. Fact</div>
+                                <div class="col-sm-4">Producto</div>
+                                <div class="col-sm-2">Codigo Cliente</div>
+                                <div class="col-sm-2">Sinon.factura</div>
+                                <div class="col-sm-1">Precio unitario</div>
+                                <div class="col-sm-1">Precio Importe</div>
+                            </div>
+                            <div class="row" *ngFor="let item of productos">
+                                <div class="col-sm-1">{{item.cantidad}}</div>
+                                <div class="col-sm-1">{{item.cantidad}}</div>
+                                <div class="col-sm-4">{{item.nombre}}</div>
+                                <div class="col-sm-2">{{item.descripcion}}</div>
+                                <div class="col-sm-2">{{item.descripcion}}</div>
+                                <div class="col-sm-1">{{item.precio}}</div>
+                                <div class="col-sm-1">{{item.precio* item.cantidad}}</div>
+                            </div>
+                            <div class="row table-footer">
+                                <div class="col-sm-10">Importe total: </div>
+                                <div class="col-sm-2">{{data.importe}}</div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
                         <button mat-button>
-                            <mat-icon>delete</mat-icon>
+                            <mat-icon>print</mat-icon> IMPRIMIR
                         </button>
-                    </p>
-                </div>
-            </mat-list-item>
-        </mat-list>
-    </p>
-    <p>
-        <button mat-button (click)="addProducto()">
-            <mat-icon>playlist_add</mat-icon> Agregar producto
-        </button>
-    </p>
-</form>
+                    </mat-card-actions>
+                </mat-card>
+            </p>
+        </form>
+    </div>
+
+</mat-drawer-container>

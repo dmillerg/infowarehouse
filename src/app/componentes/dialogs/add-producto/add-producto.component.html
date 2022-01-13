@@ -2,11 +2,27 @@
     <form>
         <p>
             <mat-form-field appearance="legacy">
+                <mat-label>Codigo</mat-label>
+                <input matInput placeholder="codigo" name="codigo" [(ngModel)]="codigo">
+                <mat-icon matSuffix>code</mat-icon>
+                <mat-hint>Ingrese el codigo del producto</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
                 <mat-label>Nombre</mat-label>
                 <input matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre">
                 <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
                 <mat-hint>Ingrese el nombre del producto</mat-hint>
             </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Descripcion</mat-label>
+                <textarea matInput></textarea>
+                <mat-icon matSuffix>description</mat-icon>
+                <mat-hint>Ingrese una breve descripcion producto</mat-hint>
+              </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="legacy" floatLabel="always">
@@ -20,10 +36,19 @@
         <p>
             <mat-form-field appearance="legacy" floatLabel="always">
                 <mat-label>Precio Unitario</mat-label>
-                <input matInput type="number" step="0.01" class="example-right-align" placeholder="0" name="precio_unitario"
-                    [(ngModel)]="precio_unitario">
+                <input matInput type="number" step="0.01" class="example-right-align" placeholder="0"
+                    name="precio_unitario" [(ngModel)]="precio_unitario">
                 <span matPrefix>$&nbsp;</span>
                 <span matSuffix>.00</span>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy" floatLabel="always">
+                <mat-label>Cantidad</mat-label>
+                <input matInput type="number" step="1" class="example-right-align" placeholder="0"
+                    name="cantidad" [(ngModel)]="cantidad">
+                    <mat-icon matSuffix>bookmarks</mat-icon>
+                    <mat-hint>Ingrese la cantidad de productos</mat-hint>
             </mat-form-field>
         </p>
     </form>

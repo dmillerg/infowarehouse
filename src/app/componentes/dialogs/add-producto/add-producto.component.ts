@@ -12,9 +12,12 @@ import { FooterComponent } from '../../footer/footer.component';
 })
 export class AddProductoComponent implements OnInit {
 
+  codigo: string = '';
   nombre: string = '';
+  descripcion: string = '';
   precio: string = '';
   precio_unitario: string = '';
+  cantidad: string = '';
 
   constructor(private storage: SessionStorageService,
     private api: ApiService,
@@ -28,9 +31,12 @@ export class AddProductoComponent implements OnInit {
 
   addOrUpdate() {
     let form = new FormData();
+    form.append('codigo', this.codigo);
     form.append('nombre', this.nombre);
+    form.append('descripcion', this.descripcion);
     form.append('precio', this.precio);
     form.append('precio_unitario', this.precio_unitario);
+    form.append('cantidad', this.cantidad);
     if (this.data.accion == 'add') {
       this.api.addProducto(form).subscribe((result) => {
         this.dialogRef.close(result);
@@ -41,9 +47,12 @@ export class AddProductoComponent implements OnInit {
       });
     }else{
       this.dialogRef.close({
+        codigo: this.codigo,
         nombre: this.nombre,
+        descripcion: this.descripcion,
         precio: this.precio,
         precio_unitario: this.precio_unitario,
+        cantidad: this.cantidad,
       });
     }
   }

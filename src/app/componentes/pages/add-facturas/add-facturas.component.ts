@@ -17,6 +17,9 @@ export class AddFacturasComponent implements OnInit {
     factura: '',
     entregado: '',
     facturado: '',
+    entidad: '',
+    almacen: '',
+    importe: 0,
   }
 
 
@@ -29,9 +32,15 @@ export class AddFacturasComponent implements OnInit {
     let formData = new FormData();
     formData.append('empresa', this.data.empresa);
     formData.append('codigo', this.data.codigo);
+    formData.append('no_factura', this.data.factura);
+    formData.append('entregado_por', this.data.entregado);
+    formData.append('facturado_por', this.data.facturado);
+    formData.append('entidad_suministradora', this.data.entidad);
+    formData.append('almacen', this.data.almacen);
+    formData.append('importe', this.data.importe.toString());
     this.api.addFactura(formData).subscribe((result) => {
       this.emisor.emit('factura creada');
-    })
+    });
   }
 
   addProducto(){

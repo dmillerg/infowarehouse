@@ -13,6 +13,7 @@ export class InformeComponent implements OnInit {
     factura: '',
     entregado: '',
     facturado: '',
+    importe: 0,
   };
 
   constructor() { }

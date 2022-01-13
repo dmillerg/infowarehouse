@@ -1,7 +1,42 @@
 .mat-form-field {
-    margin-inline: 5px;
+    margin: 5px;
 }
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+    max-width: 300px;
+  }
 
-.listitem p{
-    margin-inline: 5px;
-}
+  .mat-card{
+    max-width: 98%;
+    transition: all .3s;
+  }
+
+  .table{
+    width: 100%;
+  }
+
+  .table-item{
+    width: 50%;
+    text-align: start;
+  }
+
+  .table-header{
+    margin-block: 10px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 5px;
+  }
+
+  .table-footer{
+    margin-block: 10px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 5px;
+  }

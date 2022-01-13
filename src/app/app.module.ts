@@ -37,6 +37,8 @@ import { AddProductoComponent } from './componentes/dialogs/add-producto/add-pro
 import { FacturaComponent } from './componentes/pages/factura/factura.component';
 import { InformeComponent } from './componentes/pages/informe/informe.component';
 import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
 
 
 const materialModules = [
@@ -56,6 +58,8 @@ const materialModules = [
   MatStepperModule,
   MatRippleModule,
   MatListModule,
+  MatSidenavModule,
+  MatCardModule,
 ];
 
 @NgModule({

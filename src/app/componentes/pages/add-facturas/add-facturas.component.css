@@ -5,3 +5,7 @@ button:disabled{
 .mat-form-field{
     margin-inline: 5px;
 }
+
+.addform{
+    min-height: 350px;
+}
