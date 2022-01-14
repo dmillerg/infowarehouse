@@ -34,7 +34,7 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>No.</mat-label>
-                <input matInput placeholder="no" name="no" [(ngModel)]="data.no">
+                <input matInput placeholder="no" name="no" [(ngModel)]="data.no" disabled>
                 <mat-icon matSuffix>tag</mat-icon>
                 <mat-hint>Ingrese el numero</mat-hint>
             </mat-form-field>
@@ -58,6 +58,21 @@
                 <input matInput disabled placeholder="Importe total" name="importe" [(ngModel)]="data.importe">
                 <span matPrefix>$&nbsp;</span>
             </mat-form-field>
+        </p>
+        <button type="button" mat-button (click)="previsualizar = !previsualizar">
+            {{previsualizar ? 'Esconder' : 'Previsualizar'}}
+        </button>
+        <p class="centrado-horizontal" *ngIf="previsualizar">
+            <mat-card>
+                <mat-card-content>
+                  <app-ficha-informe [data]="data" [productos]="productos"></app-ficha-informe>  
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>
+                        <mat-icon>print</mat-icon> IMPRIMIR
+                    </button>
+                </mat-card-actions>
+            </mat-card>
         </p>
     </form>
 </div>

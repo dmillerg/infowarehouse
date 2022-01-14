@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-informe',
-  templateUrl: './informe.component.html',
-  styleUrls: ['./informe.component.css']
+  selector: 'app-ficha-factura',
+  templateUrl: './ficha-factura.component.html',
+  styleUrls: ['./ficha-factura.component.css']
 })
-export class InformeComponent implements OnInit {
+export class FichaFacturaComponent implements OnInit {
 
   @Input() data: any = {
     empresa: '',
@@ -14,15 +14,8 @@ export class InformeComponent implements OnInit {
     entregado: '',
     facturado: '',
     importe: 0,
-    no: '',
   };
-
-  fecha = new Date();
-
   @Input() productos: any[] = [];
-  previsualizar: boolean = false;
-
-
   constructor() { }
 
   ngOnInit(): void {

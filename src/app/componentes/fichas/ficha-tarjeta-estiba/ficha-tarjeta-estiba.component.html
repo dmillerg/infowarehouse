@@ -1,0 +1,75 @@
+<div class="table-responsive-sm">
+    <table class="text-center text-white table table-bordered" >
+        <tr>
+            <th colspan="10">
+                <h1 class="h1">Tarjeta Estiba</h1>
+            </th>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <th colspan="10">Producto Generico: </th>
+            <th colspan="2">Codigo</th>
+        </tr>
+        <tr>
+            <th colspan="10">Producto Especifico: {{producto.nombre}}</th>
+            <th colspan="2">{{data.codigo}}</th>
+        </tr>
+        <tr>
+            <th colspan="10">Producto Surtido: </th>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <th colspan="4">CUENTA</th>
+            <th colspan="4">SUBCUENTA</th>
+            <th colspan="4">ANALISIS</th>
+        </tr>
+        <tr>
+            <th colspan="4">SECCION</th>
+            <th colspan="4">ESTANTE</th>
+            <th colspan="4">CASILLA</th>
+        </tr>
+        <tr>
+            <th colspan="4">UNIDAD DE MEDIDA <p>U</p>
+            </th>
+            <th colspan="4">PRECIO UNITARIO <p></p>
+            </th>
+            <th colspan="4">RECARGO O DESCUENTO</th>
+        </tr>
+        <tr>
+            <th colspan="2"></th>
+            <th colspan="2">DOCUMENTO</th>
+            <th colspan="2" rowspan="2">ENTRADA</th>
+            <th colspan="2" rowspan="2">SALIDA</th>
+            <th colspan="2" rowspan="2">SALDO</th>
+            <th colspan="2" rowspan="2">FIRMA</th>
+        </tr>
+        <tr>
+            <th>Dia</th>
+            <th>M</th>
+            <th>Clave</th>
+            <th>No.</th>
+        </tr>
+        <tr *ngFor="let item of historial">
+            <th>{{item.fecha}}</th>
+            <th>{{item.fecha}}</th>
+            <th>{{item.clave}}</th>
+            <th>{{item.no}}</th>
+            <th colspan="2">{{item.entrada}}</th>
+            <th colspan="2">{{item.salida}}</th>
+            <th colspan="2">{{item.saldo}}</th>
+            <th colspan="2">{{item.firma}}</th>
+        </tr>
+        <tr>
+            <th colspan="10">PRODUCTO GENERICO</th>
+            <th colspan="2" rowspan="1.5">CODIGO</th>
+        </tr>
+        <tr>
+            <th colspan="10">PRODUCTO ESPECIFICO</th>
+            <th colspan="2" rowspan="1.5">UNID DE MED.</th>
+        </tr>
+        <tr>
+            <th colspan="10">PRODUCTO SURTIDO</th>
+
+        </tr>
+    </table>
+</div>

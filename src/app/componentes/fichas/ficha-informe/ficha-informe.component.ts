@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-informe',
-  templateUrl: './informe.component.html',
-  styleUrls: ['./informe.component.css']
+  selector: 'app-ficha-informe',
+  templateUrl: './ficha-informe.component.html',
+  styleUrls: ['./ficha-informe.component.css']
 })
-export class InformeComponent implements OnInit {
+export class FichaInformeComponent implements OnInit {
 
   @Input() data: any = {
     empresa: '',
@@ -18,10 +18,8 @@ export class InformeComponent implements OnInit {
   };
 
   fecha = new Date();
-
+  
   @Input() productos: any[] = [];
-  previsualizar: boolean = false;
-
 
   constructor() { }
 

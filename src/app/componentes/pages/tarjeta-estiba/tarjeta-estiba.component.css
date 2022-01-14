@@ -1,21 +1,16 @@
 .mat-form-field {
     margin: 5px;
 }
-  .example-sidenav-content {
+
+.example-sidenav-content {
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
-  }
-  
-  .example-sidenav {
-    padding: 20px;
-    max-width: 300px;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   .mat-card{
     max-width: 98%;
     transition: all .3s;
   }
-
-  

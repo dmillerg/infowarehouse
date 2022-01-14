@@ -9,3 +9,8 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.3);
   }
+
+  .mat-card{
+    max-width: 98%;
+    transition: all .3s;
+  }

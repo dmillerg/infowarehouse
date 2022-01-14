@@ -1,0 +1,102 @@
+<div class="table-responsive-sm">
+    <table class="text-center table table-bordered text-white">
+        <tr>
+            <th rowspan="3" >
+                <p style="transform: rotate(270deg)">Receptor</p>
+            </th>
+            <th colspan="8">Empresa: {{data.empresa}}</th>
+            <th colspan="8">Codigo</th>
+            <th rowspan="3" colspan="8">
+                <h1 class="h1">INFORME DE RECEPCION</h1>
+            </th>
+            <th rowspan="3" colspan="7">Transferecia e/ almacenes
+                <p>No.</p>
+            </th>
+            <th rowspan="3" colspan="7">
+                Entrega de productos terminados
+                <p>no.</p>
+            </th>
+            <th>D</th>
+            <th>M</th>
+            <th>A</th>
+        </tr>
+         <tr>
+            <th colspan="8">Unidad:</th>
+            <th colspan="8">Codigo:</th>
+            <th rowspan="2">{{fecha | date: 'dd' }}</th>
+            <th rowspan="2">{{fecha | date: 'MM' }}</th>
+            <th rowspan="2">{{fecha | date: 'YYYY' }}</th>
+        </tr>
+        <tr>
+            <th colspan="8">Almacen: {{data.almacen}}</th>
+            <th colspan="8">Codigo:</th>
+        </tr>
+        <tr>
+            <th colspan="17">Entidad suministradora: {{data.entidad}}</th>
+            <th colspan="8">Codigo: </th>
+            <th colspan="7">Contrato No. </th>
+            <th colspan="7">Factura: {{data.factura}}</th>
+            <th colspan="3">Conduce No.</th>
+        </tr>
+        <tr>
+            <th colspan="3">Sol. De Compra No.</th>
+            <th colspan="6">Manifiesto: </th>
+            <th colspan="8">Partida: </th>
+            <th colspan="8">Con. Embarque: </th>
+            <th colspan="7">Ord. Expedicion: </th>
+            <th colspan="7">Bultos Cant: <p>Tipo: </p>
+            </th>
+            <th colspan="3">Bultos Cant: <p>Tipo: </p>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="9">Transportador: </th>
+            <th colspan="8">Carnet de identidad: </th>
+            <th colspan="8">Chapa No.</th>
+            <th colspan="7">Casilla No.</th>
+            <th colspan="7"></th>
+            <th colspan="3"></th>
+        </tr>
+        <tr>
+            <th rowspan="2" colspan="3">Codigo</th>
+            <th rowspan="2" colspan="12">Descripcion</th>
+            <th rowspan="2" colspan="2">U.M.</th>
+            <th rowspan="2" colspan="2">Cantidad</th>
+            <th colspan="6">CUP</th>
+            <th colspan="7"></th>
+            <th colspan="7"></th>
+            <th rowspan="2" colspan="3">Saldo en existencia</th>
+        </tr>
+       <tr>
+            <th colspan="3">precio</th>
+            <th colspan="3">importe</th>
+        </tr>
+        <tr *ngFor="let item of productos">
+            <th colspan="3">{{item.codigo}}</th>
+            <th colspan="12">{{item.descripcion}}</th>
+            <th colspan="2">U</th>
+            <th colspan="2">{{item.cantidad}}</th>
+            <th colspan="3">{{item.precio}}</th>
+            <th colspan="3">{{item.precio * item.cantidad}}</th>
+            <th colspan="7"></th>
+            <th colspan="7"></th>
+            <th colspan="3">{{item.cantidad}}</th>
+        </tr>
+         <tr>
+            <th colspan="19">Importe de la Recepcion</th>
+            <th colspan="6">CUP {{data.importe}}</th>
+            <th colspan="14"></th>
+            <th rowspan="2" colspan="3">No. <p>{{data.no}}</p>
+            </th>
+        </tr>
+       <tr>
+            <th colspan="3">Jefe de Almacen <p>Firma: </p>
+            </th>
+            <th colspan="3">Informe de Reclamacion No.</th>
+            <th colspan="9">Acta de transportador</th>
+            <th colspan="4">Recepcionado: Alain O. Perez Hernandez</th>
+            <th colspan="6">Anotado control inventario:</th>
+            <th colspan="14">Contabilizado: </th>
+        </tr>
+    </table>
+</div>

@@ -63,3 +63,7 @@ body {
   color: white;
   transition: ease-in-out .3s;
 }
+
+table{
+  font-size: smaller;
+}

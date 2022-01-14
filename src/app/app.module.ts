@@ -39,6 +39,10 @@ import { InformeComponent } from './componentes/pages/informe/informe.component'
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
+import { FichaInformeComponent } from './componentes/fichas/ficha-informe/ficha-informe.component';
+import { FichaFacturaComponent } from './componentes/fichas/ficha-factura/ficha-factura.component';
+import { FichaTarjetaEstibaComponent } from './componentes/fichas/ficha-tarjeta-estiba/ficha-tarjeta-estiba.component';
+import { TarjetaEstibaComponent } from './componentes/pages/tarjeta-estiba/tarjeta-estiba.component';
 
 
 const materialModules = [
@@ -75,6 +79,10 @@ const materialModules = [
     AddProductoComponent,
     FacturaComponent,
     InformeComponent,
+    FichaInformeComponent,
+    FichaFacturaComponent,
+    FichaTarjetaEstibaComponent,
+    TarjetaEstibaComponent,
   ],
   imports: [
     BrowserModule,

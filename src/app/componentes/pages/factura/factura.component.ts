@@ -42,7 +42,7 @@ export class FacturaComponent implements OnInit {
     facturado: '',
     importe: 0,
   };
-  productos: any[] = [];
+  @Input() productos: any[] = [];
   previsualizar: boolean = false;
 
   constructor(public dialog: MatDialog) { }

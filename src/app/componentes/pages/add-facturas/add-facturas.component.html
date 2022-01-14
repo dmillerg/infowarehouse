@@ -1,20 +1,21 @@
 <mat-stepper class="mat-elevation-z8 addform">
     <mat-step label="Factura" state="note">
-        <app-factura [data]="data"></app-factura>
+        <app-factura [data]="data" [productos]="productos"></app-factura>
         <div>
             <button mat-button matStepperNext class="text-white" (click)="addFactura()"
                 [disabled]="data.empresa.length==0 || data.codigo.length==0">Siguiente</button>
         </div>
     </mat-step>
     <mat-step label="Informe de recepcion" state="chat">
-       <app-informe [data]="data"></app-informe>
+       <app-informe [data]="data" [productos]="productos"></app-informe>
         <div class="text-white">
             <button mat-button matStepperPrevious>Atras</button>
             <button mat-button matStepperNext>Siguiente</button>
         </div>
     </mat-step>
     <mat-step label="Tarjeta estiba" class="text-white">
-        <p>You're welcome.</p>
+        <app-tarjeta-estiba [data]="data" [productos]="productos"></app-tarjeta-estiba>
+        <button class="text-white" mat-button><mat-icon>save</mat-icon> GUARDAR</button>
     </mat-step>
 
     <!-- Icon overrides. -->

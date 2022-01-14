@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Producto } from 'src/app/models/producto';
 import { ApiService } from 'src/app/services/apis/api.service';
 
 @Component({
@@ -20,12 +21,19 @@ export class AddFacturasComponent implements OnInit {
     entidad: '',
     almacen: '',
     importe: 0,
+    no: '',
   }
+
+  productos: any[] = [];
 
 
   constructor(private api: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.api.listarInformesByAnno(new Date().getFullYear()).subscribe((result) => {
+      let num = result.length + 1
+      this.data.no = (num < 10 ? '0' + num : num) + ' - ' + new Date().getFullYear();
+    })
   }
 
   addFactura() {
@@ -43,6 +51,6 @@ export class AddFacturasComponent implements OnInit {
     });
   }
 
-  addProducto(){
+  addProducto() {
   }
 }
