@@ -47,10 +47,34 @@ export class AddFacturasComponent implements OnInit {
     formData.append('almacen', this.data.almacen);
     formData.append('importe', this.data.importe.toString());
     this.api.addFactura(formData).subscribe((result) => {
-      this.emisor.emit('factura creada');
+      this.productos.forEach((e) => {
+        this.addFacturaProducto(e);
+      });
+      this.addInformeRecepcion();
     });
   }
 
-  addProducto() {
+  addFacturaProducto(producto: any) {
+    let formData = new FormData();
+    formData.append('no_factura', this.data.factura);
+    formData.append('codigo_producto', producto.codigo);
+    formData.append('cantidad', producto.cantidad);
+    this.api.addFacturaProducto(formData).subscribe((result) => {
+
+    })
+  }
+
+  addInformeRecepcion() {
+    let formData = new FormData();
+    formData.append('no', this.data.no);
+    formData.append('empresa', this.data.empresa);
+    formData.append('almacen', this.data.almacen);
+    formData.append('codigo', this.data.codigo);
+    formData.append('recepcionado_por', this.data.entregado);
+    formData.append('entidad_suministradora', this.data.entidad);
+    formData.append('factura', this.data.factura);
+    this.api.addInformeRecepcion(formData).subscribe((result) => {
+
+    })
   }
 }

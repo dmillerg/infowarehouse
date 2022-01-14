@@ -161,6 +161,17 @@ export class ApiService {
   }
 
   /**
+   * Agrega un historial a la tarjeta estiba
+   * @param formData datos del historial
+   * @returns 
+   */
+   addHistorialTarjetasEstibas(formData: FormData){
+    let direccion = this.url + 'historialtarjetas';
+    formData.append('token', this.storage.retrieve('user').token);
+    return this.http.post(direccion, formData);
+  }
+
+  /**
    * Obtiene todos los informes dado un anno
    * @param anno de los informes
    * @returns 
@@ -169,4 +180,26 @@ export class ApiService {
     let direccion = this.url + 'informe/' + anno;
     return this.http.get<Informe[]>(direccion);
   }
+
+   /**
+   * Agrega un producto a la factura
+   * @param formData datos del producto
+   * @returns 
+   */
+    addFacturaProducto(formData: FormData, no: string=''){
+      let direccion = this.url + 'facturaproducto';
+      formData.append('token', this.storage.retrieve('user').token);
+      return this.http.post(direccion, formData);
+    }
+
+    /**
+   * Agrega un informe de recepcion
+   * @param formData datos del informe
+   * @returns 
+   */
+     addInformeRecepcion(formData: FormData){
+      let direccion = this.url + 'informe';
+      formData.append('token', this.storage.retrieve('user').token);
+      return this.http.post(direccion, formData);
+    }
 }
