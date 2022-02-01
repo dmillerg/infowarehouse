@@ -1,5 +1,6 @@
 <mat-stepper class="mat-elevation-z8 addform">
     <mat-step label="Factura" state="note">
+        <app-ficha-solicitud-material></app-ficha-solicitud-material>
         <app-factura [data]="data" [productos]="productos"></app-factura>
         <div>
             <button mat-button matStepperNext class="text-white">Siguiente</button>

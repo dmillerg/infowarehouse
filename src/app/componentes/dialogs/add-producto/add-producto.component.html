@@ -19,7 +19,7 @@
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Descripcion</mat-label>
-                <textarea matInput></textarea>
+                <textarea matInput name="descripcion" [(ngModel)]="descripcion"></textarea>
                 <mat-icon matSuffix>description</mat-icon>
                 <mat-hint>Ingrese una breve descripcion producto</mat-hint>
               </mat-form-field>

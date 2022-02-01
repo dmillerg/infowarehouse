@@ -3,6 +3,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 import { Factura } from 'src/app/models/factura';
 import { ApiService } from 'src/app/services/apis/api.service';
 
@@ -73,7 +74,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.empresa + 1}`;
   }
 
-  constructor(private api: ApiService, public dialog: MatDialog) {
+  constructor(private api: ApiService, public dialog: MatDialog, private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -117,6 +118,8 @@ export class FacturasComponent implements AfterViewInit, OnInit {
         this.selection.selected.forEach((r) => {
           this.borrar(r);
         });
+        console.log("llega hasta aqui")
+        this.toast.success("Se borro correctamente", "Mensaje!!")
         break;
       case 'Agregar':
         this.table = false;

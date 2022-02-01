@@ -43,6 +43,8 @@ import { FichaInformeComponent } from './componentes/fichas/ficha-informe/ficha-
 import { FichaFacturaComponent } from './componentes/fichas/ficha-factura/ficha-factura.component';
 import { FichaTarjetaEstibaComponent } from './componentes/fichas/ficha-tarjeta-estiba/ficha-tarjeta-estiba.component';
 import { TarjetaEstibaComponent } from './componentes/pages/tarjeta-estiba/tarjeta-estiba.component';
+import { ToastrModule } from 'ngx-toastr';
+import { FichaSolicitudMaterialComponent } from './componentes/fichas/ficha-solicitud-material/ficha-solicitud-material.component';
 
 
 const materialModules = [
@@ -83,6 +85,7 @@ const materialModules = [
     FichaFacturaComponent,
     FichaTarjetaEstibaComponent,
     TarjetaEstibaComponent,
+    FichaSolicitudMaterialComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +96,7 @@ const materialModules = [
     NgxWebstorageModule.forRoot(),
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot(),
   ], exports: [
     ...materialModules
   ],

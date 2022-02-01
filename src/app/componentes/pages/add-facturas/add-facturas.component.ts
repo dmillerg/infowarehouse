@@ -32,6 +32,7 @@ export class AddFacturasComponent implements OnInit {
   ngOnInit(): void {
     this.api.listarInformesByAnno(new Date().getFullYear()).subscribe((result) => {
       let num = result.length + 1
+      console.log(result);
       this.data.no = (num < 10 ? '0' + num : num) + ' - ' + new Date().getFullYear();
     })
   }
@@ -47,9 +48,7 @@ export class AddFacturasComponent implements OnInit {
     formData.append('almacen', this.data.almacen);
     formData.append('importe', this.data.importe.toString());
     this.api.addFactura(formData).subscribe((result) => {
-      this.productos.forEach((e) => {
-        this.addFacturaProducto(e);
-      });
+      console.log(result)
       this.addInformeRecepcion();
     });
   }
@@ -61,7 +60,7 @@ export class AddFacturasComponent implements OnInit {
     formData.append('cantidad', producto.cantidad);
     this.api.addFacturaProducto(formData).subscribe((result) => {
 
-    })
+    });
   }
 
   addInformeRecepcion() {
@@ -74,7 +73,7 @@ export class AddFacturasComponent implements OnInit {
     formData.append('entidad_suministradora', this.data.entidad);
     formData.append('factura', this.data.factura);
     this.api.addInformeRecepcion(formData).subscribe((result) => {
-
-    })
+      console.log(result)
+    });
   }
 }
