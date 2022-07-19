@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddProductoComponent } from './progress-save-factura.component';
+import { ProgresSaveFactura } from './progress-save-factura.component';
 
-describe('AddProductoComponent', () => {
-  let component: AddProductoComponent;
-  let fixture: ComponentFixture<AddProductoComponent>;
+describe('ProgresSaveFactura', () => {
+  let component: ProgresSaveFactura;
+  let fixture: ComponentFixture<ProgresSaveFactura>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddProductoComponent ]
+      declarations: [ ProgresSaveFactura ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddProductoComponent);
+    fixture = TestBed.createComponent(ProgresSaveFactura);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

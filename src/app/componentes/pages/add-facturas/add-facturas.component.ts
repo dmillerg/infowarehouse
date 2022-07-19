@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Producto } from 'src/app/models/producto';
 import { ApiService } from 'src/app/services/apis/api.service';
+import { ProgresSaveFactura } from '../../dialogs/progress-save-factura/progress-save-factura.component';
 
 @Component({
   selector: 'app-add-facturas',
@@ -34,6 +35,37 @@ export class AddFacturasComponent implements OnInit {
       let num = result.length + 1
       console.log(result);
       this.data.no = (num < 10 ? '0' + num : num) + ' - ' + new Date().getFullYear();
+    })
+  }
+
+  add() {
+    let factura = {
+      empresa: this.data.empresa,
+      codigo: this.data.codigo,
+      factura: this.data.factura,
+      entregado: this.data.entregado,
+      facturado: this.data.facturado,
+      entidad: this.data.entidad,
+      almacen: this.data.almacen,
+      importe: this.data.importe,
+    }
+
+    let informe = {
+      no: this.data.no,
+      empresa: this.data.empresa,
+      almacen: this.data.almacen,
+      codigo: this.data.codigo,
+      recepcionado_por: this.data.entregado,
+      entidad_suministradora: this.data.entidad,
+      factura: this.data.factura,
+    }
+    // let factura_producto = {
+    //   no_factura: this.data.factura,
+    //   codigo_producto: this.productos
+    // }
+
+    this.dialog.open(ProgresSaveFactura, {
+      data: {factura: factura, informe: informe}
     })
   }
 

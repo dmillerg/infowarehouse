@@ -36,17 +36,19 @@ import { MatRippleModule } from '@angular/material/core';
 import { AddProductoComponent } from './componentes/dialogs/add-producto/add-producto.component';
 import { FacturaComponent } from './componentes/pages/factura/factura.component';
 import { InformeComponent } from './componentes/pages/informe/informe.component';
-import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatCardModule} from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
 import { FichaInformeComponent } from './componentes/fichas/ficha-informe/ficha-informe.component';
 import { FichaFacturaComponent } from './componentes/fichas/ficha-factura/ficha-factura.component';
 import { FichaTarjetaEstibaComponent } from './componentes/fichas/ficha-tarjeta-estiba/ficha-tarjeta-estiba.component';
 import { TarjetaEstibaComponent } from './componentes/pages/tarjeta-estiba/tarjeta-estiba.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FichaSolicitudMaterialComponent } from './componentes/fichas/ficha-solicitud-material/ficha-solicitud-material.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatMenuModule} from '@angular/material/menu'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ProgresSaveFactura } from './componentes/dialogs/progress-save-factura/progress-save-factura.component';
 
 
 const materialModules = [
@@ -70,6 +72,7 @@ const materialModules = [
   MatCardModule,
   MatAutocompleteModule,
   MatMenuModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({
@@ -83,6 +86,7 @@ const materialModules = [
     DialogFromUsers,
     AddFacturasComponent,
     AddProductoComponent,
+    ProgresSaveFactura,
     FacturaComponent,
     InformeComponent,
     FichaInformeComponent,
