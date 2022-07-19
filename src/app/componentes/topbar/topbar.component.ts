@@ -8,14 +8,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class TopbarComponent implements OnInit {
 
   @Input() tooltip_add: string = 'Agregar';
-  @Input() tooltip_search: string = 'Buscar';
   @Input() tooltip_delete: string = 'Borrar';
-  @Input() tooltip_list: string = 'Listar';
 
   @Input() tooltip_add_if: boolean = true;
   @Input() tooltip_delete_if: boolean = true;
-  @Input() tooltip_search_if: boolean = true;
-  @Input() tooltip_list_if: boolean = true;
+
+  @Input() disable_add: boolean = false;
+  @Input() disable_delete: boolean = false;
 
   @Output() emisor: EventEmitter<any> = new EventEmitter();
 
@@ -25,8 +24,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   action(e: any) {
-    this.emisor.emit(e.target.innerText);
+    this.emisor.emit(e);
   }
 }

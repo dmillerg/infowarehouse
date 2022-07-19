@@ -50,8 +50,8 @@
             <th>No.</th>
         </tr>
         <tr *ngFor="let item of historial">
-            <th>{{item.fecha}}</th>
-            <th>{{item.fecha}}</th>
+            <th>{{item.fecha| date: "dd"}}</th>
+            <th>{{item.fecha| date: "MM"}}</th>
             <th>{{item.clave}}</th>
             <th>{{item.no}}</th>
             <th colspan="2">{{item.entrada}}</th>

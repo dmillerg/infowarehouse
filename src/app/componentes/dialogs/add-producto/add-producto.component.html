@@ -1,17 +1,29 @@
 <mat-dialog-content>
     <form>
         <p>
-            <mat-form-field appearance="legacy">
+            <mat-form-field class="example-full-width" appearance="legacy">
                 <mat-label>Codigo</mat-label>
-                <input matInput placeholder="codigo" name="codigo" [(ngModel)]="codigo">
-                <mat-icon matSuffix>code</mat-icon>
-                <mat-hint>Ingrese el codigo del producto</mat-hint>
-            </mat-form-field>
+                <input type="text"
+                       placeholder="Elija uno o agreguelo nuevo"
+                       aria-label="Codigo"
+                       matInput
+                       name="codigo"
+                        [(ngModel)]="codigo"
+                        (ngModelChange)="filtrar()"
+                       [matAutocomplete]="auto"
+                       >
+                       <mat-icon matSuffix>code</mat-icon>
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of codigos" [value]="option.codigo">
+                    {{option.codigo}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Nombre</mat-label>
-                <input matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre">
+                <input matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre" [disabled]="codigo_encontrado">
                 <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
                 <mat-hint>Ingrese el nombre del producto</mat-hint>
             </mat-form-field>
@@ -19,7 +31,7 @@
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Descripcion</mat-label>
-                <textarea matInput name="descripcion" [(ngModel)]="descripcion"></textarea>
+                <textarea matInput name="descripcion" [(ngModel)]="descripcion" [disabled]="codigo_encontrado"></textarea>
                 <mat-icon matSuffix>description</mat-icon>
                 <mat-hint>Ingrese una breve descripcion producto</mat-hint>
               </mat-form-field>
@@ -28,7 +40,7 @@
             <mat-form-field appearance="legacy" floatLabel="always">
                 <mat-label>Precio</mat-label>
                 <input matInput type="number" step="0.01" class="example-right-align" placeholder="0" name="precio"
-                    [(ngModel)]="precio">
+                    [(ngModel)]="precio" [disabled]="codigo_encontrado">
                 <span matPrefix>$&nbsp;</span>
                 <span matSuffix>.00</span>
             </mat-form-field>
@@ -37,7 +49,7 @@
             <mat-form-field appearance="legacy" floatLabel="always">
                 <mat-label>Precio Unitario</mat-label>
                 <input matInput type="number" step="0.01" class="example-right-align" placeholder="0"
-                    name="precio_unitario" [(ngModel)]="precio_unitario">
+                    name="precio_unitario" [(ngModel)]="precio_unitario" [disabled]="codigo_encontrado">
                 <span matPrefix>$&nbsp;</span>
                 <span matSuffix>.00</span>
             </mat-form-field>
@@ -46,7 +58,7 @@
             <mat-form-field appearance="legacy" floatLabel="always">
                 <mat-label>Cantidad</mat-label>
                 <input matInput type="number" step="1" class="example-right-align" placeholder="0"
-                    name="cantidad" [(ngModel)]="cantidad">
+                    name="cantidad" [(ngModel)]="cantidad" >
                     <mat-icon matSuffix>bookmarks</mat-icon>
                     <mat-hint>Ingrese la cantidad de productos</mat-hint>
             </mat-form-field>

@@ -13,13 +13,17 @@ body {
   --firstcolor: #d81b60;
   --firstcolor-hover: rgba(0, 0, 0, .4);
   --firstcolor-section: rgba(59, 64, 142, 0.281);
-  --theme-color: rgb(44, 44, 44);
+  --theme-color: #303030;
   --theme-color-section: rgb(60, 60, 60);
   --dimen-tooltip: -70px;
 }
 
 .navbar-svg-shadow {
   filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .7));
+}
+
+.bg-firstcolor{
+  background-color: var(--firstcolor);
 }
 
 .svg-shadow {
@@ -62,6 +66,10 @@ body {
   background-color: var(--firstcolor-hover);
   color: white;
   transition: ease-in-out .3s;
+}
+
+.bg-darkest{
+  background-color: var(--theme-color);
 }
 
 table{

@@ -1,22 +1,35 @@
-<div class="navbar-mine centrado-horizontal navbar-svg-shadow">
-    <div class="menu centrado-horizontal">
-        <div id="factura" matRipple class="menu-item" matTooltip="Info acerca de las facturas"
-            (click)="menuItem($event)">Facturas</div>
-        <div id="informe" matRipple class="menu-item" matTooltip="Info acerca de las informe de recepcion"
-            (click)="menuItem($event)">Informes de Recepcion</div>
-        <div id="tarjeta" matRipple class="menu-item" matTooltip="Info acerca de las tarjetas estibas"
-            (click)="menuItem($event)">Tarjetas Estibas</div>
+<section class="w-100 bg-firstcolor shadow-lg position-relative">
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-5 d-flex justify-content-start align-item-center">
+                <button mat-button [matMenuTriggerFor]="actions" class="menu-item" matTooltip="Menu con todas las acciones  " ><mat-icon>menu</mat-icon></button>
+                <h1 class="display-4 text-white mt-4">INFO <span class="box">WAREHOUSE</span></h1>
+                <mat-menu #actions="matMenu">
+                    <button mat-menu-item [matMenuTriggerFor]="listar">Listados</button>
+                    <button mat-menu-item [matMenuTriggerFor]="agregar">Agregar</button>
+                </mat-menu>
+                <mat-menu #listar="matMenu">
+                    <button mat-menu-item [routerLink]="['/facturas']">Facturas</button>
+                    <button mat-menu-item [routerLink]="['/informes']">Informes de Recepción</button>
+                    <button mat-menu-item [routerLink]="['/tarjetas']">Tarjetas Estibas</button>
+                    <button mat-menu-item>Solicitud Materiales</button>
+                    <button mat-menu-item>Vales de entrega</button>
+                    <button mat-menu-item>Vales de salida</button>
+                  </mat-menu>
+                  
+                  <mat-menu #agregar="matMenu">
+                    <button mat-menu-item>Factura, Informes de Recepción, Tarjeta Estiba</button>
+                    <button mat-menu-item>Vale de Entrega</button>
+                    <button mat-menu-item>Solicitud Material</button>
+                    <button mat-menu-item>Vale de salida</button>
+                  </mat-menu>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-1 d-none d-lg-flex align-item-center">
+             <button mat-button matTooltip="Buscar en toda la pagina " class="text-white"><mat-icon matRipple>search</mat-icon></button>
+            </div>
+        </div>
     </div>
-    <div id="inicio" matRipple class="container-image centrado-vertical navbar-svg-shadow"
-        matTooltip="Almacen de la CTC pagina de inicio" (click)="menuItem($event)">
-        <img class="svg-shadow img-icon" src="assets/ctc.png">
-    </div>
-    <div class="menu centrado-horizontal">
-        <div id="solicitud" matRipple class="menu-item" matTooltip="Info acerca de las solicitudes de material"
-            (click)="menuItem($event)">Solicitud Material</div>
-        <div id="entrega" matRipple class="menu-item" matTooltip="Info acerca de los vales de entrega"
-            (click)="menuItem($event)">Vale de entrega</div>
-        <div id="salida" matRipple class="menu-item" matTooltip="Info acerca de los vales de salida"
-            (click)="menuItem($event)">Vale de salida</div>
-    </div>
-</div>
+</section>

@@ -1,8 +1,8 @@
 .footer-mine {
     width: 100%;
     height: 200px;
-    background-color: var(--firstcolor);
-    box-shadow: 0 -2px 5px 5px rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0 -2px 5px 5px rgba(0, 0, 0, 0.4); */
 }
 
 .copyrigth {

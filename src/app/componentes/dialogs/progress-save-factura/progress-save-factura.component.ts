@@ -9,9 +9,9 @@ import { ApiService } from 'src/app/services/apis/api.service';
 import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
-  selector: 'app-add-producto',
-  templateUrl: './add-producto.component.html',
-  styleUrls: ['./add-producto.component.css']
+  selector: 'app-progress-save-factura',
+  templateUrl: './progress-save-factura.component.html',
+  styleUrls: ['./progress-save-factura.component.css']
 })
 export class AddProductoComponent implements OnInit {
 

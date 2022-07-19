@@ -1,5 +1,5 @@
 <app-topbar (emisor)="action($event)"></app-topbar>
-<div class="relative centrado-vertical" [@scaleAnimation]="'enter'" *ngIf='table'>
+<div class="centrado-vertical container" [@scaleAnimation]="'enter'" *ngIf='table'>
   <mat-form-field appearance="standard">
     <mat-label>Buscar</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el elemento de busqueda" #input>
@@ -53,6 +53,6 @@
     <p class="text-firstcolor">Cargando...</p>
   </div>
 </div>
-<div [@scaleAnimation]="'enter'" *ngIf='addform'>
+<div [@scaleAnimation]="'enter'" class="container" *ngIf='addform'>
   <app-add-facturas (emisor)="loadFacturas()"></app-add-facturas>
 </div>

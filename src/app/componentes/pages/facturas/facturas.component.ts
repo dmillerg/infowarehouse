@@ -121,7 +121,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
         console.log("llega hasta aqui")
         this.toast.success("Se borro correctamente", "Mensaje!!")
         break;
-      case 'Agregar':
+      case 'agregar':
         this.table = false;
         this.addform = true;
         break;

@@ -45,6 +45,8 @@ import { FichaTarjetaEstibaComponent } from './componentes/fichas/ficha-tarjeta-
 import { TarjetaEstibaComponent } from './componentes/pages/tarjeta-estiba/tarjeta-estiba.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FichaSolicitudMaterialComponent } from './componentes/fichas/ficha-solicitud-material/ficha-solicitud-material.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatMenuModule} from '@angular/material/menu'; 
 
 
 const materialModules = [
@@ -66,6 +68,8 @@ const materialModules = [
   MatListModule,
   MatSidenavModule,
   MatCardModule,
+  MatAutocompleteModule,
+  MatMenuModule,
 ];
 
 @NgModule({

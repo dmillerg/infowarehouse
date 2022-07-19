@@ -1,9 +1,6 @@
 .navbar-mine {
-    width: 100%;
-    height: auto;
-    max-height: 80px;
-    background-color: var(--firstcolor);
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(120deg, #d81b60, #6c0d30, rgba(0,0,0,1))
+    /* box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4); */
 }
 
 .menu{
@@ -39,4 +36,11 @@
 
 .menu-item.active{
     background-color: var(--firstcolor-hover);
+}
+
+.box{
+    border: 1px solid white;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: -5px;
 }
