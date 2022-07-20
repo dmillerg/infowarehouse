@@ -4,6 +4,6 @@ export interface HistorialEstiba{
     no: string;
     entrada: string;
     salida: string;
-    saldo: string;
+    saldo: number;
     firma: string;
 }

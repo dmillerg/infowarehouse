@@ -1,4 +1,4 @@
-<div class="table-responsive-sm">
+<div class="table-responsive-sm mt-4">
     <table class="text-center text-white table table-bordered" >
         <tr>
             <th colspan="10">
@@ -12,7 +12,7 @@
         </tr>
         <tr>
             <th colspan="10">Producto Especifico: {{producto.nombre}}</th>
-            <th colspan="2">{{data.codigo}}</th>
+            <th colspan="2">{{producto.codigo}}</th>
         </tr>
         <tr>
             <th colspan="10">Producto Surtido: </th>
@@ -31,7 +31,7 @@
         <tr>
             <th colspan="4">UNIDAD DE MEDIDA <p>U</p>
             </th>
-            <th colspan="4">PRECIO UNITARIO <p></p>
+            <th colspan="4">PRECIO UNITARIO <p>{{producto.precio_unitario}}</p>
             </th>
             <th colspan="4">RECARGO O DESCUENTO</th>
         </tr>

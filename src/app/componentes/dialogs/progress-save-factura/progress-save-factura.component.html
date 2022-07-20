@@ -1,8 +1,12 @@
 <mat-dialog-content>
-    <mat-progress-bar mode="determinate" [value]="40"></mat-progress-bar>
-<p>{{mensaje_progreso}}</p>
+    <h1 mat-dialog-title>Progreso de guardado</h1>
+    <div *ngIf="progreso==100" class="w-100 text-center">
+        <mat-icon>done_all</mat-icon>
+    </div>
+    <mat-progress-bar mode="determinate" *ngIf="progreso<100" [value]="progreso"></mat-progress-bar>
+    <p>{{mensaje_progreso}}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button >Aceptar</button>
+    <button mat-button>Aceptar</button>
     <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
 </mat-dialog-actions>

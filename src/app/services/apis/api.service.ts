@@ -166,7 +166,9 @@ export class ApiService {
    * @returns 
    */
    addHistorialTarjetasEstibas(formData: FormData){
-    let direccion = this.url + 'historialtarjetas';
+    let direccion = this.url + 'historialtarjeta';
+    console.log(formData);
+    
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
@@ -201,5 +203,14 @@ export class ApiService {
       let direccion = this.url + 'informe';
       formData.append('token', this.storage.retrieve('user').token);
       return this.http.post(direccion, formData);
+    }
+
+    /**
+     * Obtiene el ultimo numero de informe de recepcion
+     * @returns 
+     */
+    getLastNumberInformeRecepcion(): Observable<any>{
+      let direccion = this.url + 'informelastnumber';
+      return this.http.get<any>(direccion);
     }
 }

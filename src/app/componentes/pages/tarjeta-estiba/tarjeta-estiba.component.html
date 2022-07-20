@@ -7,10 +7,10 @@
         <button type="button" mat-button (click)="previsualizar = !previsualizar">
             {{previsualizar ? 'Esconder' : 'Previsualizar'}}
         </button>
-        <p class="centrado-horizontal" *ngIf="previsualizar">
-            <mat-card>
+        <p class="centrado-horizontal flex-wrap m-2" *ngIf="previsualizar">
+            <mat-card *ngFor="let item of productos">
                 <mat-card-content>
-                    <div class="centrado-horizontal" *ngFor="let item of productos">
+                    <div class="centrado-horizontal" >
                         <app-ficha-tarjeta-estiba [data]="data" [producto]="item"></app-ficha-tarjeta-estiba>
                     </div>
                 </mat-card-content>

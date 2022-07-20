@@ -8,4 +8,5 @@ export interface Informe{
     entidad_suministradora: string;
     factura: string;
     anno: number;
+    no_anno: string;
 }

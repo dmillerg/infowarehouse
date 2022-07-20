@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Factura } from 'src/app/models/factura';
+import { Informe } from 'src/app/models/informe';
 import { Producto } from 'src/app/models/producto';
 import { ApiService } from 'src/app/services/apis/api.service';
 import { ProgresSaveFactura } from '../../dialogs/progress-save-factura/progress-save-factura.component';
@@ -23,6 +25,7 @@ export class AddFacturasComponent implements OnInit {
     almacen: '',
     importe: 0,
     no: '',
+    no_anno: '',
   }
 
   productos: any[] = [];
@@ -31,41 +34,43 @@ export class AddFacturasComponent implements OnInit {
   constructor(private api: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.api.listarInformesByAnno(new Date().getFullYear()).subscribe((result) => {
-      let num = result.length + 1
+    this.api.getLastNumberInformeRecepcion().subscribe(result => {
       console.log(result);
-      this.data.no = (num < 10 ? '0' + num : num) + ' - ' + new Date().getFullYear();
+      if (result.length>0)
+        this.data.no = result[0].no + 1; else this.data.no = '01'
+      this.data.no = Number(this.data.no) < 10 ? '0' + this.data.no : this.data.no;
+      this.data.no_anno = this.data.no + '-' + new Date().getFullYear();
     })
   }
 
   add() {
-    let factura = {
+    let factura: Factura = {
+      fecha: '',
       empresa: this.data.empresa,
       codigo: this.data.codigo,
-      factura: this.data.factura,
-      entregado: this.data.entregado,
-      facturado: this.data.facturado,
-      entidad: this.data.entidad,
+      no_factura: this.data.factura,
+      entregado_por: this.data.entregado,
+      facturado_por: this.data.facturado,
+      entidad_suministradora: this.data.entidad,
       almacen: this.data.almacen,
       importe: this.data.importe,
     }
 
-    let informe = {
+    let informe: Informe = {
       no: this.data.no,
+      fecha: new Date(),
       empresa: this.data.empresa,
       almacen: this.data.almacen,
       codigo: this.data.codigo,
       recepcionado_por: this.data.entregado,
       entidad_suministradora: this.data.entidad,
       factura: this.data.factura,
+      anno: new Date().getFullYear(),
+      no_anno: this.data.no_anno,
     }
-    // let factura_producto = {
-    //   no_factura: this.data.factura,
-    //   codigo_producto: this.productos
-    // }
 
     this.dialog.open(ProgresSaveFactura, {
-      data: {factura: factura, informe: informe}
+      data: { factura: factura, informe: informe, productos: this.productos }
     })
   }
 

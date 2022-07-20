@@ -36,19 +36,35 @@ export class FichaTarjetaEstibaComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.listarHistorialTarjetasEstibas(this.producto.codigo).subscribe((result: any) => {
-      if(result.documents){
+      if (result.documents) {
         this.historial = [];
         let histori: HistorialEstiba = {
           fecha: new Date(),
           clave: 'I/R',
-          no: this.producto.codigo,
+          no: this.data.no,
           entrada: this.producto.cantidad.toString(),
           salida: '-',
-          saldo: this.producto.cantidad.toString(),
-          firma: '',
+          saldo: this.producto.cantidad,
+          firma: 'SAD',
         }
         this.historial.push(histori);
-      }else this.historial = result;
+      } else {
+        this.historial = result;
+        console.log(result);
+        
+        let last = this.historial[this.historial.length - 1];
+        let histori: HistorialEstiba = {
+          fecha: new Date(),
+          clave: 'I/R',
+          no: this.data.no,
+          entrada: this.producto.cantidad.toString(),
+          salida: '-',
+          saldo: Number(last.saldo) + Number(this.producto.cantidad),
+          firma: 'SAD',
+        }
+        this.historial.push(histori);
+        console.log(this.historial)
+      }
     });
   }
 
