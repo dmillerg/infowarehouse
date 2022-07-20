@@ -1,29 +1,32 @@
-<mat-stepper class="mat-elevation-z8 addform">
-    <mat-step label="Factura" state="note">
-        <app-factura [data]="data" [productos]="productos"></app-factura>
-        <div>
-            <button mat-button matStepperNext class="text-white">Siguiente</button>
-        </div>
-    </mat-step>
-    <mat-step label="Informe de recepcion" state="chat">
-        <app-informe [data]="data" [productos]="productos"></app-informe>
-        <div class="text-white">
-            <button mat-button matStepperPrevious>Atras</button>
-            <button mat-button matStepperNext>Siguiente</button>
-        </div>
-    </mat-step>
-    <mat-step label="Tarjeta estiba" class="text-white">
-        <app-tarjeta-estiba [data]="data" [productos]="productos"></app-tarjeta-estiba>
-        <button class="text-white" mat-button (click)="add()">
-            <mat-icon>save</mat-icon> GUARDAR
-        </button>
-    </mat-step>
+<app-topbar (emisor)="action($event)"></app-topbar>
+<div class="container">
+    <mat-stepper class="mat-elevation-z8 addform">
+        <mat-step label="Factura" state="note">
+            <app-factura [data]="data" [productos]="productos"></app-factura>
+            <div>
+                <button mat-button matStepperNext class="text-white">Siguiente</button>
+            </div>
+        </mat-step>
+        <mat-step label="Informe de recepcion" state="chat">
+            <app-informe [data]="data" [productos]="productos"></app-informe>
+            <div class="text-white">
+                <button mat-button matStepperPrevious>Atras</button>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </mat-step>
+        <mat-step label="Tarjeta estiba" class="text-white">
+            <app-tarjeta-estiba [data]="data" [productos]="productos"></app-tarjeta-estiba>
+            <button class="text-white" mat-button (click)="add()" [disabled]="disableButton()">
+                <mat-icon>save</mat-icon> GUARDAR
+            </button>
+        </mat-step>
 
-    <!-- Icon overrides. -->
-    <ng-template matStepperIcon="note">
-        <mat-icon>notes</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="chat">
-        <mat-icon>forum</mat-icon>
-    </ng-template>
-</mat-stepper>
+        <!-- Icon overrides. -->
+        <ng-template matStepperIcon="note">
+            <mat-icon>notes</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="chat">
+            <mat-icon>forum</mat-icon>
+        </ng-template>
+    </mat-stepper>
+</div>

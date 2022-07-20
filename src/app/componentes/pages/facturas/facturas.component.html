@@ -1,4 +1,4 @@
-<app-topbar (emisor)="action($event)"></app-topbar>
+<app-topbar (emisor)="action($event)" [disable_delete]="addform"></app-topbar>
 <div class="centrado-vertical container" [@scaleAnimation]="'enter'" *ngIf='table'>
   <mat-form-field appearance="standard">
     <mat-label>Buscar</mat-label>
@@ -52,7 +52,4 @@
     <mat-spinner [diameter]="40"></mat-spinner>
     <p class="text-firstcolor">Cargando...</p>
   </div>
-</div>
-<div [@scaleAnimation]="'enter'" class="container" *ngIf='addform'>
-  <app-add-facturas (emisor)="loadFacturas()"></app-add-facturas>
 </div>

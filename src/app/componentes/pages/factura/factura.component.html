@@ -5,15 +5,16 @@
             <button style="position: absolute;right: 0;top: 0;" mat-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
             <mat-list role="list">
                 <mat-list-item *ngFor="let item of productos; let i = index" [attr.data-index]="i" role="listitem">
-                    <div class="centrado-horizontal">
-                        <p>{{i + 1}}.</p>
-                        <p>{{item.nombre}}</p>
-                        <p> ${{item.precio}}</p>
-                        <p>
-                            <button mat-button (click)="deleteProducto(item)">
+                    <div class="container-fluid">
+                        <div class="row flex-nowrap d-flex align-item-center justify-content-center">
+                            <div class="col-sm-1">{{i + 1}}.</div>
+                            <div class="col-sm-6">{{item.nombre}}</div>
+                            <div class="col-sm-2">${{item.precio}}</div>
+                            <div class="col-sm-3"> 
+                                <button mat-button style="margin-top: -20px;" (click)="deleteProducto(item)">
                                 <mat-icon>delete</mat-icon>
-                            </button>
-                        </p>
+                            </button></div>
+                        </div>
                     </div>
                 </mat-list-item>
             </mat-list>
