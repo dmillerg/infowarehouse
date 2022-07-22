@@ -121,7 +121,7 @@ export class ApiService {
    * Lista las tarjetas estibas
    * @returns 
    */
-  listarTarjetasEstibas(): Observable<TarjetaEstiba[]>{
+  listarTarjetasEstibas(): Observable<TarjetaEstiba[]> {
     let direccion = this.url + 'tarjetas';
     return this.http.get<TarjetaEstiba[]>(direccion);
   }
@@ -131,7 +131,7 @@ export class ApiService {
    * @param formData datos de la tarjeta estiba
    * @returns 
    */
-  addTarjetasEstibas(formData: FormData){
+  addTarjetasEstibas(formData: FormData) {
     let direccion = this.url + 'tarjetas';
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
@@ -142,7 +142,7 @@ export class ApiService {
    * @param codigo de la tarjeta a borrar
    * @returns 
    */
-   borrarTarjeta(codigo: string = '') {
+  borrarTarjeta(codigo: string = '') {
     let direccion = this.url + 'tarjetas/' + codigo;
     const headers = { 'content-type': 'application/json' };
     const params = {
@@ -155,7 +155,7 @@ export class ApiService {
    * Lista el historial de tarjetas estibas
    * @returns 
    */
-   listarHistorialTarjetasEstibas(codigo: string= ""): Observable<HistorialEstiba[]>{
+  listarHistorialTarjetasEstibas(codigo: string = ""): Observable<HistorialEstiba[]> {
     let direccion = this.url + 'historialtarjeta/' + codigo;
     return this.http.get<HistorialEstiba[]>(direccion);
   }
@@ -165,10 +165,10 @@ export class ApiService {
    * @param formData datos del historial
    * @returns 
    */
-   addHistorialTarjetasEstibas(formData: FormData){
+  addHistorialTarjetasEstibas(formData: FormData) {
     let direccion = this.url + 'historialtarjeta';
     console.log(formData);
-    
+
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
@@ -178,39 +178,54 @@ export class ApiService {
    * @param anno de los informes
    * @returns 
    */
-  listarInformesByAnno(anno: number=0): Observable<Informe[]>{
+  listarInformesByAnno(anno: number = 0): Observable<Informe[]> {
     let direccion = this.url + 'informe/' + anno;
     return this.http.get<Informe[]>(direccion);
   }
 
-   /**
-   * Agrega un producto a la factura
-   * @param formData datos del producto
+  /**
+  * Agrega un producto a la factura
+  * @param formData datos del producto
+  * @returns 
+  */
+  addFacturaProducto(formData: FormData, no: string = '') {
+    let direccion = this.url + 'facturaproducto';
+    formData.append('token', this.storage.retrieve('user').token);
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+ * Agrega un informe de recepcion
+ * @param formData datos del informe
+ * @returns 
+ */
+  addInformeRecepcion(formData: FormData) {
+    let direccion = this.url + 'informe';
+    formData.append('token', this.storage.retrieve('user').token);
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtiene el ultimo numero de informe de recepcion
    * @returns 
    */
-    addFacturaProducto(formData: FormData, no: string=''){
-      let direccion = this.url + 'facturaproducto';
-      formData.append('token', this.storage.retrieve('user').token);
-      return this.http.post(direccion, formData);
-    }
+  getLastNumberInformeRecepcion(): Observable<any> {
+    let direccion = this.url + 'informelastnumber';
+    return this.http.get<any>(direccion);
+  }
 
-    /**
-   * Agrega un informe de recepcion
-   * @param formData datos del informe
+  /**
+   * Obtiene todos los productos asociados a una factura
+   * @param no_factura de la factura a la cual buscar los productos
    * @returns 
    */
-     addInformeRecepcion(formData: FormData){
-      let direccion = this.url + 'informe';
-      formData.append('token', this.storage.retrieve('user').token);
-      return this.http.post(direccion, formData);
-    }
-
-    /**
-     * Obtiene el ultimo numero de informe de recepcion
-     * @returns 
-     */
-    getLastNumberInformeRecepcion(): Observable<any>{
-      let direccion = this.url + 'informelastnumber';
-      return this.http.get<any>(direccion);
-    }
+  getFacturaProducto(no_factura: string): Observable<any[]> {
+    let direccion = this.url + 'facturaproducto';
+    const headers = { 'content-type': 'application/json' };
+    const params = {
+      token: this.storage.retrieve('user').token,
+      no_factura: no_factura,
+    };
+    return this.http.get<any[]>(direccion, { headers: headers, params: params })
+  }
 }

@@ -2,7 +2,7 @@
 <div class="centrado-vertical container" [@scaleAnimation]="'enter'" *ngIf='table'>
   <mat-form-field appearance="standard">
     <mat-label>Buscar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el elemento de busqueda" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el elemento de busqueda" #input style="color: #fff;">
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table">
@@ -36,6 +36,12 @@
     <ng-container matColumnDef="codigo">
       <th mat-header-cell *matHeaderCellDef> Codigo </th>
       <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+    </ng-container>
+
+    <!-- Codigo Column -->
+    <ng-container matColumnDef="acciones" width="5%">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">  <button mat-button matTooltip="ver o editar" (click)="editOrSee(element)"><mat-icon>edit</mat-icon></button> </td>
     </ng-container>
 
     <tr class="mat-row" *matNoDataRow>

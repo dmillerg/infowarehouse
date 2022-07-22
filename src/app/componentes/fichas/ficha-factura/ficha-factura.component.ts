@@ -19,6 +19,7 @@ export class FichaFacturaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
 }

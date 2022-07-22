@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SessionStorageService } from 'ngx-webstorage';
 import { Factura } from 'src/app/models/factura';
 import { ApiService } from 'src/app/services/apis/api.service';
 
@@ -39,7 +40,7 @@ const listAnimation = trigger('listAnimation', [
 })
 
 export class FacturasComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['select', 'empresa', 'fecha', 'codigo'];
+  displayedColumns: string[] = ['select', 'empresa', 'fecha', 'codigo', 'acciones'];
   facturas: Factura[] = [];
   dataSource = new MatTableDataSource<Factura>(this.facturas);
   selection = new SelectionModel<Factura>(true, []);
@@ -75,7 +76,11 @@ export class FacturasComponent implements AfterViewInit, OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.empresa + 1}`;
   }
 
-  constructor(private api: ApiService, public dialog: MatDialog, private toast: ToastrService, private router: Router) {
+  constructor(private api: ApiService,
+    public dialog: MatDialog,
+    private toast: ToastrService,
+    private router: Router,
+    private storage: SessionStorageService) {
   }
 
   ngOnInit(): void {
@@ -135,6 +140,11 @@ export class FacturasComponent implements AfterViewInit, OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  editOrSee(item: any) {
+    this.storage.store('factura', item);
+    this.router.navigate(['editfactura']);
   }
 
 }

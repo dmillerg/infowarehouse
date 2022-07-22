@@ -15,7 +15,9 @@ export class FooterComponent implements OnInit {
   constructor(public dialog: MatDialog, private storage: SessionStorageService) { }
 
   ngOnInit(): void {
-    this.messageButton = this.storage.retrieve('user').usuario;
+    if (this.storage.retrieve('user')) {
+      this.messageButton = this.storage.retrieve('user').usuario;
+    }
   }
 
   openDialog(data: string = '') {

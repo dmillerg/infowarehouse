@@ -49,6 +49,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProgresSaveFactura } from './componentes/dialogs/progress-save-factura/progress-save-factura.component';
+import { EditFacturaComponent } from './componentes/pages/editar/edit-factura/edit-factura.component';
 
 
 const materialModules = [
@@ -94,6 +95,7 @@ const materialModules = [
     FichaTarjetaEstibaComponent,
     TarjetaEstibaComponent,
     FichaSolicitudMaterialComponent,
+    EditFacturaComponent,
   ],
   imports: [
     BrowserModule,
