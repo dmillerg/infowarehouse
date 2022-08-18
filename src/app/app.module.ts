@@ -50,6 +50,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProgresSaveFactura } from './componentes/dialogs/progress-save-factura/progress-save-factura.component';
 import { EditFacturaComponent } from './componentes/pages/editar/edit-factura/edit-factura.component';
+import lottie from 'lottie-web'
+import { defineLordIconElement } from "lord-icon-element";
+
+// register lottie and define custom element
+defineLordIconElement(lottie.loadAnimation);
 
 
 const materialModules = [
@@ -121,4 +126,8 @@ const materialModules = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    defineLordIconElement(lottie.loadAnimation);
+  }
+ }
