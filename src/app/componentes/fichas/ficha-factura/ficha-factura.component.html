@@ -1,37 +1,37 @@
 <mat-card-title>Factura de Orden de Venta #HET1 - {{data.factura}}</mat-card-title>
-                    <mat-card-subtitle>
-                        <p>Entidad suministradora: {{data.entidad}}</p>
-                        <p>Codigo: {{data.codigo}}</p>
-                        <p>Empresa: {{data.empresa}}</p>
-                        <p>Almacen: {{data.almacen}}</p>
-                    </mat-card-subtitle>
-                    <mat-card-content>
-                        <div class="centrado-horizontal table text-white">
-                            <p class="table-item">Entregado por: {{data.entregado}}</p>
-                            <p class="table-item">Facturado por: {{data.facturado}}</p>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row table-header">
-                                <div class="col-sm-1">Cant. Orden</div>
-                                <div class="col-sm-1">Cant. Fact</div>
-                                <div class="col-sm-4">Producto</div>
-                                <div class="col-sm-2">Codigo Cliente</div>
-                                <div class="col-sm-2">Sinon.factura</div>
-                                <div class="col-sm-1">Precio unitario</div>
-                                <div class="col-sm-1">Precio Importe</div>
-                            </div>
-                            <div class="row" *ngFor="let item of productos">
-                                <div class="col-sm-1">{{item.cantidad}}</div>
-                                <div class="col-sm-1">{{item.cantidad}}</div>
-                                <div class="col-sm-4">{{item.nombre}}</div>
-                                <div class="col-sm-2">{{item.descripcion}}</div>
-                                <div class="col-sm-2">{{item.descripcion}}</div>
-                                <div class="col-sm-1">{{item.precio}}</div>
-                                <div class="col-sm-1">{{item.precio* item.cantidad}}</div>
-                            </div>
-                            <div class="row table-footer">
-                                <div class="col-sm-10">Importe total: </div>
-                                <div class="col-sm-2">{{data.importe}}</div>
-                            </div>
-                        </div>
-                    </mat-card-content>
+<mat-card-subtitle>
+    <p>Entidad suministradora: {{data.entidad}}</p>
+    <p>Codigo: {{data.codigo}}</p>
+    <p>Empresa: {{data.empresa}}</p>
+    <p>Almacen: {{data.almacen}}</p>
+</mat-card-subtitle>
+<mat-card-content>
+    <div class="centrado-horizontal table text-white">
+        <p class="table-item">Entregado por: {{data.entregado}}</p>
+        <p class="table-item">Facturado por: {{data.facturado}}</p>
+    </div>
+    <div class="container-fluid">
+        <div class="row table-header">
+            <div class="col-sm-1">Cant. Orden</div>
+            <div class="col-sm-1">Cant. Fact</div>
+            <div class="col-sm-4">Producto</div>
+            <div class="col-sm-2">Codigo Cliente</div>
+            <div class="col-sm-2">Sinon.factura</div>
+            <div class="col-sm-1">Precio unitario</div>
+            <div class="col-sm-1">Precio Importe</div>
+        </div>
+        <div class="row" *ngFor="let item of productos">
+            <div class="col-sm-1">{{item.cantidad}}</div>
+            <div class="col-sm-1">{{item.cantidad}}</div>
+            <div class="col-sm-4">{{item.nombre}}</div>
+            <div class="col-sm-2">{{item.descripcion}}</div>
+            <div class="col-sm-2">{{item.descripcion}}</div>
+            <div class="col-sm-1">{{item.precio}}</div>
+            <div class="col-sm-1">{{item.precio* item.cantidad}}</div>
+        </div>
+        <div class="row table-footer">
+            <div class="col-sm-11">Importe total: </div>
+            <div class="col-sm-1">{{data.importe}}</div>
+        </div>
+    </div>
+</mat-card-content>

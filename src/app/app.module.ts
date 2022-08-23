@@ -23,7 +23,7 @@ import { TopbarComponent } from './componentes/topbar/topbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogFromUsers, FooterComponent } from './componentes/footer/footer.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -50,7 +50,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProgresSaveFactura } from './componentes/dialogs/progress-save-factura/progress-save-factura.component';
 import { EditFacturaComponent } from './componentes/pages/editar/edit-factura/edit-factura.component';
-
+// import ngx-translate and the http loader
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 const materialModules = [
   MatIconModule,
@@ -107,6 +109,13 @@ const materialModules = [
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ], exports: [
     ...materialModules
   ],
@@ -122,3 +131,5 @@ const materialModules = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {    return new TranslateHttpLoader(http);}
