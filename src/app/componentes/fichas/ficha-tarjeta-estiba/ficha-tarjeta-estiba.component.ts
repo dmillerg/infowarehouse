@@ -24,7 +24,8 @@ export class FichaTarjetaEstibaComponent implements OnInit {
   @Input() producto: Producto = {
     id: -1,
     codigo: '',
-    nombre: '',
+    producto_generico: '',
+    producto_especifico: '',
     descripcion: '',
     precio: 0,
     precio_unitario: 0,
@@ -36,6 +37,8 @@ export class FichaTarjetaEstibaComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.listarHistorialTarjetasEstibas(this.producto.codigo).subscribe((result: any) => {
+      console.log(result);
+      
       if (result.documents) {
         this.historial = [];
         let histori: HistorialEstiba = {
@@ -65,6 +68,9 @@ export class FichaTarjetaEstibaComponent implements OnInit {
         this.historial.push(histori);
         console.log(this.historial)
       }
+    }, error=>{
+      console.log(error);
+      
     });
   }
 

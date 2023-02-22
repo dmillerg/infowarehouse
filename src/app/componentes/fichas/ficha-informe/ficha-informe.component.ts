@@ -24,6 +24,7 @@ export class FichaInformeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

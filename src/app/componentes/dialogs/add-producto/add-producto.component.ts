@@ -16,7 +16,8 @@ import { FooterComponent } from '../../footer/footer.component';
 export class AddProductoComponent implements OnInit {
 
   codigo: string = '';
-  nombre: string = '';
+  producto_generico: string = '';
+  producto_especifico: string = '';
   descripcion: string = '';
   precio: string = '';
   precio_unitario: string = '';
@@ -48,8 +49,8 @@ export class AddProductoComponent implements OnInit {
   filtrar() {
     this.codigos = this.codigos_all.filter((e) => e.codigo.toLowerCase().includes(this.codigo.toLowerCase()));
     if (this.codigos.length == 1) {
-      console.log("prasdqah", this.codigos[0])
-      this.nombre = this.codigos[0].nombre;
+      this.producto_generico = this.codigos[0].producto_generico;
+      this.producto_especifico = this.codigos[0].producto_especifico;
       this.descripcion = this.codigos[0].descripcion;
       this.precio = this.codigos[0].precio.toString();
       this.precio_unitario = this.codigos[0].precio_unitario.toString();
@@ -62,29 +63,32 @@ export class AddProductoComponent implements OnInit {
   addOrUpdate() {
     let form = new FormData();
     form.append('codigo', this.codigo);
-    form.append('nombre', this.nombre);
+    form.append('producto_generico', this.producto_generico);
+    form.append('producto_especifico', this.producto_especifico);
     form.append('descripcion', this.descripcion);
     form.append('precio', this.precio);
     form.append('precio_unitario', this.precio_unitario);
     form.append('cantidad', this.cantidad);
-    if (this.data.accion == 'add') {
-      this.api.addProducto(form).subscribe((result) => {
-        this.dialogRef.close(result);
-      });
-    } else if (this.data.accion == 'update') {
-      this.api.actualizarProducto(form, this.data.id).subscribe((result) => {
-        this.dialogRef.close(result);
-      });
-    } else {
+    // if (this.data.accion == 'add') {
+    //   this.api.addProducto(form).subscribe((result) => {
+    //     this.dialogRef.close(result);
+    //   });
+    // } else if (this.data.accion == 'update') {
+    //   this.api.actualizarProducto(form, this.data.id).subscribe((result) => {
+    //     this.dialogRef.close(result);
+    //   });
+    // } else {
       this.dialogRef.close({
         codigo: this.codigo,
-        nombre: this.nombre,
+        producto_generico: this.producto_generico,
+        producto_especifico: this.producto_especifico,
         descripcion: this.descripcion,
         precio: this.precio,
         precio_unitario: this.precio_unitario,
         cantidad: this.cantidad,
+        codigo_encontrado: this.codigo_encontrado,
       });
-    }
+    // }
   }
 
 }

@@ -57,7 +57,15 @@ export class FacturaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)
       if (result != undefined && result != '') {
-        this.productos.push(result);
+        if (this.productos.filter(e => e.codigo == result.codigo).length > 0) {
+          this.productos = this.productos.map(e => {
+            if (e.codigo == result.codigo) {
+              e.cantidad += result.cantidad;
+            }
+            return e;
+          })
+        } else
+          this.productos.push(result);
         this.data.importe += result.precio * result.cantidad;
       }
     });

@@ -22,10 +22,18 @@
         </p>
         <p>
             <mat-form-field appearance="legacy">
-                <mat-label>Nombre</mat-label>
-                <input matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre" [disabled]="codigo_encontrado">
+                <mat-label>Producto generico</mat-label>
+                <input matInput placeholder="Producto generico" name="producto_generico" [(ngModel)]="producto_generico" [disabled]="codigo_encontrado">
                 <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
-                <mat-hint>Ingrese el nombre del producto</mat-hint>
+                <mat-hint>Ingrese el nombre del producto generico</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Producto especifico</mat-label>
+                <input matInput placeholder="producto especifico" name="producto_especifico" [(ngModel)]="producto_especifico" [disabled]="codigo_encontrado">
+                <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+                <mat-hint>Ingrese el nombre del producto especifico</mat-hint>
             </mat-form-field>
         </p>
         <p>

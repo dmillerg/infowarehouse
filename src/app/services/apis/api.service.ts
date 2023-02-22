@@ -46,7 +46,7 @@ export class ApiService {
    * Devuelve todas las facturas en la base de datos
    */
   listarFacturas(): Observable<Factura[]> {
-    let direccion = this.url + 'facturas';
+    let direccion = this.url + 'factura';
     return this.http.get<Factura[]>(direccion);
   }
 
@@ -56,7 +56,7 @@ export class ApiService {
    * @returns 
    */
   borrarFacturas(codigo: string = '') {
-    let direccion = this.url + 'facturas/' + codigo;
+    let direccion = this.url + 'factura/' + codigo;
     return this.http.delete(direccion);
   }
 
@@ -66,7 +66,7 @@ export class ApiService {
    * @returns 
    */
   addFactura(formData: FormData) {
-    let direccion = this.url + 'facturas';
+    let direccion = this.url + 'factura';
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
@@ -76,7 +76,7 @@ export class ApiService {
    * @returns 
    */
   listarProducto(): Observable<Producto[]> {
-    let direccion = this.url + 'productos';
+    let direccion = this.url + 'producto';
     return this.http.get<Producto[]>(direccion);
   }
 
@@ -86,7 +86,7 @@ export class ApiService {
    * @returns 
    */
   addProducto(formData: FormData) {
-    let direccion = this.url + 'productos';
+    let direccion = this.url + 'producto';
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
@@ -97,7 +97,7 @@ export class ApiService {
    * @returns 
    */
   borrarProducto(id: number = -1) {
-    let direccion = this.url + 'productos/' + id.toString();
+    let direccion = this.url + 'producto/' + id.toString();
     const headers = { 'content-type': 'application/json' };
     const params = {
       token: this.storage.retrieve('user').token,
@@ -122,7 +122,7 @@ export class ApiService {
    * @returns 
    */
   listarTarjetasEstibas(): Observable<TarjetaEstiba[]> {
-    let direccion = this.url + 'tarjetas';
+    let direccion = this.url + 'tarjetaestiba';
     return this.http.get<TarjetaEstiba[]>(direccion);
   }
 
@@ -132,7 +132,7 @@ export class ApiService {
    * @returns 
    */
   addTarjetasEstibas(formData: FormData) {
-    let direccion = this.url + 'tarjetas';
+    let direccion = this.url + 'tarjetaestiba';
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
@@ -143,7 +143,7 @@ export class ApiService {
    * @returns 
    */
   borrarTarjeta(codigo: string = '') {
-    let direccion = this.url + 'tarjetas/' + codigo;
+    let direccion = this.url + 'tarjetaestiba/' + codigo;
     const headers = { 'content-type': 'application/json' };
     const params = {
       token: this.storage.retrieve('user').token,
@@ -156,7 +156,7 @@ export class ApiService {
    * @returns 
    */
   listarHistorialTarjetasEstibas(codigo: string = ""): Observable<HistorialEstiba[]> {
-    let direccion = this.url + 'historialtarjeta/' + codigo;
+    let direccion = this.url + 'historialtarjetaestiba/' + codigo;
     return this.http.get<HistorialEstiba[]>(direccion);
   }
 
@@ -166,9 +166,8 @@ export class ApiService {
    * @returns 
    */
   addHistorialTarjetasEstibas(formData: FormData) {
-    let direccion = this.url + 'historialtarjeta';
+    let direccion = this.url + 'historialtarjetaestiba';
     console.log(formData);
-
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
   }
@@ -210,7 +209,7 @@ export class ApiService {
    * @returns 
    */
   getLastNumberInformeRecepcion(): Observable<any> {
-    let direccion = this.url + 'informelastnumber';
+    let direccion = this.url + 'tt';
     return this.http.get<any>(direccion);
   }
 
