@@ -39,7 +39,7 @@ export class FichaTarjetaEstibaComponent implements OnInit {
     this.api.listarHistorialTarjetasEstibas(this.producto.codigo).subscribe((result: any) => {
       console.log(result);
       
-      if (result.documents) {
+      if (result.length == 0) {
         this.historial = [];
         let histori: HistorialEstiba = {
           fecha: new Date(),
