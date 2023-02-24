@@ -16,7 +16,10 @@
                         Aqui puedes ver el avance explicito
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <p *ngFor="let item of detalles">{{item}}</p>
+                <p *ngFor="let item of detalles">
+                    <mat-icon *ngIf="item.status=='success'">done</mat-icon>
+                    <mat-icon *ngIf="item.status=='error'">error</mat-icon>
+                    {{item.message}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </p>

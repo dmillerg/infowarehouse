@@ -17,7 +17,7 @@ import { FooterComponent } from '../../footer/footer.component';
 export class ProgresSaveFactura implements OnInit {
 
   mensaje_progreso: string = 'Guardando la factura ...'
-  detalles: string[] = []
+  detalles: any[] = []
   position_prod: number = 0;
   progreso: number = 0;
 
@@ -53,7 +53,7 @@ export class ProgresSaveFactura implements OnInit {
       this.saveInforme();
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado factura, intentelo más tarde";
-      this.detalles.push("Ocurrió un error en el proceso de guardado de la factura...");
+      this.detalles.push({ message: "Ocurrió un error en el proceso de guardado de la factura...", status: 'error'});
       console.log(error);
     });
   }
@@ -73,13 +73,13 @@ export class ProgresSaveFactura implements OnInit {
     this.api.addInformeRecepcion(formData).subscribe(result => {
       this.progreso = 60;
       let porcentaje = 40 / (this.data.productos.length * 2);
-      this.detalles.push("Informe de recepcion guardado satisfactoriamente, pasando a guardar los productos uno a uno...");
+      this.detalles.push({message: "Informe de recepcion guardado satisfactoriamente, pasando a guardar los productos uno a uno...", status: 'success'});
       this.mensaje_progreso = `Guardando productos 0/${this.data.productos.length}...`;
       this.saveProducto(this.data.productos[this.position_prod], this.data.productos.length, porcentaje, this.position_prod + 1);
 
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado informe, intentelo más tarde";
-      this.detalles.push("Ocurrió un error en el proceso de guardado del informe, intentelo más tarde");
+      this.detalles.push({message: "Ocurrió un error en el proceso de guardado del informe, intentelo más tarde", status: 'error'});
       console.log(error);
     })
   }
@@ -97,15 +97,15 @@ export class ProgresSaveFactura implements OnInit {
     if (!producto.codigo_encontrado) {
       this.api.addProducto(formData).subscribe(result => {
         this.mensaje_progreso = `Guardando productos ${position}/${this.data.productos.length}...`;
-        this.detalles.push(`Producto: ${producto.producto_especifico} guardado satisfactoriamente, pasando a crearle tarjeta estiba...`);
+        this.detalles.push({message: `Producto: ${producto.producto_especifico} guardado satisfactoriamente, pasando a crearle tarjeta estiba...`, status: 'success'});
         this.saveTarjetaEstiba(producto, total, porcentaje);
       }, error => {
         this.mensaje_progreso = "Ocurrió un error en el proceso de guardado producto, intentelo más tarde";
-        this.detalles.push("Ocurrió un error en el proceso de guardado del producto, intentelo más tarde");
+        this.detalles.push({message: "Ocurrió un error en el proceso de guardado del producto, intentelo más tarde", status: 'error'});
       })
     }
     else {
-      this.detalles.push(`Producto: "${producto.producto_especifico}" ya esta en base de datos, pasando a crearle un historial de tarjeta estiba...`);
+      this.detalles.push({message: `Producto: "${producto.producto_especifico}" ya esta en base de datos, pasando a crearle un historial de tarjeta estiba...`, status: 'success'});
       this.saveHistorialTarjetaEstiba(producto, total, porcentaje);
     }
 
@@ -118,11 +118,11 @@ export class ProgresSaveFactura implements OnInit {
     formData.append('producto_especifico', producto.producto_especifico);
     formData.append('precio_unitario', producto.precio_unitario.toString());
     this.api.addTarjetasEstibas(formData).subscribe(result => {
-      this.detalles.push(`Tarjeta estiba: "${producto.codigo}"  creada satisfactoriamente, pasando a crearle un historial de tarjeta estiba...`);
+      this.detalles.push({message: `Tarjeta estiba: "${producto.codigo}"  creada satisfactoriamente, pasando a crearle un historial de tarjeta estiba...`, status: 'success'});
       this.saveHistorialTarjetaEstiba(producto, total, porcentaje)
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado tarjeta estiba, intentelo más tarde";
-      this.detalles.push("Ocurrió un error en el proceso de guardado de la tarjeta de estiba, intentelo más tarde");
+      this.detalles.push({message: "Ocurrió un error en el proceso de guardado de la tarjeta de estiba, intentelo más tarde", status: 'error'});
       console.log(error);
     })
   }
@@ -140,12 +140,12 @@ export class ProgresSaveFactura implements OnInit {
 
     this.api.addHistorialTarjetasEstibas(formData).subscribe(result => {
       console.log(result);
-      this.detalles.push(`Historial de tarjeta estiba: "${producto.codigo}" creado satisfactoriamente, pasando a crearle la factura producto...`);
+      this.detalles.push({message: `Historial de tarjeta estiba: "${producto.codigo}" creado satisfactoriamente, pasando a crearle la factura producto...`, status: 'success'});
       this.progreso += porcentaje;
       this.saveFacturaProducto(producto, total, porcentaje);
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado historial tarjeta estiba, intentelo más tarde";
-      this.detalles.push("Ocurrió un error en el proceso de guardado del historial de la tarjeta de estiba, intentelo más tarde");
+      this.detalles.push({message: "Ocurrió un error en el proceso de guardado del historial de la tarjeta de estiba, intentelo más tarde", status: 'error'});
       console.log(error);
     })
   }
@@ -159,16 +159,13 @@ export class ProgresSaveFactura implements OnInit {
     formData.append('cantidad', producto.cantidad.toString());
     this.api.addFacturaProducto(formData).subscribe(result => {
       this.progreso += porcentaje;
-      const position = this.data.productos.filter((e: any, i: number) => {
-        if (e.codigo == producto.codigo) return i; else return 0
-      })
-      this.mensaje_progreso = `Guardando productos ${position}/${total}...`;
-      this.detalles.push(`Factura producto: "${producto.codigo}" creado satisfactoriamente, pasando al siguiente producto...`);
+      this.mensaje_progreso = `Guardando productos ${this.position_prod}/${total}...`;
+      this.detalles.push({message:`Factura producto: "${producto.codigo}" creado satisfactoriamente, pasando al siguiente producto...`, status: 'success'});
       this.verificar(porcentaje);
     }, error => {
       this.verificar(porcentaje);
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado factura producto, intentelo más tarde";
-      this.detalles.push("Ocurrió un error en el proceso de guardado de la factura producto, intentelo más tarde");
+      this.detalles.push({message: "Ocurrió un error en el proceso de guardado de la factura producto, intentelo más tarde", status: 'error'});
       console.log(error);
     });
   }
@@ -176,12 +173,10 @@ export class ProgresSaveFactura implements OnInit {
   verificar(porcentaje: number) {
     this.position_prod += 1;
     if (this.position_prod < this.data.productos.length) {
-      
       this.saveProducto(this.data.productos[this.position_prod], this.data.productos.length, porcentaje, this.position_prod + 1);
     } else {
-      console.log('dasd');
-      
-      this.detalles.push('El proceso termino satisfactoriamente');
+      this.detalles.push({message:'El proceso termino satisfactoriamente', status: 'success'});
+      this.mensaje_progreso = `Todos ha terminado exitosamente...............`;
     }
   }
 }
