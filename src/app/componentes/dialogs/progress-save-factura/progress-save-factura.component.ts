@@ -17,6 +17,8 @@ import { FooterComponent } from '../../footer/footer.component';
 export class ProgresSaveFactura implements OnInit {
 
   mensaje_progreso: string = 'Guardando la factura ...'
+  detalles: string[] = []
+  position_prod: number = 0;
   progreso: number = 0;
 
   constructor(private storage: SessionStorageService,
@@ -46,10 +48,12 @@ export class ProgresSaveFactura implements OnInit {
     formData.append('importe', this.data.factura.importe);
     this.api.addFactura(formData).subscribe(result => {
       this.progreso = 30;
+      this.detalles.push("Factura guardada satisfactoriamente, pasando al informe de recepcion...");
       this.mensaje_progreso = 'Guardando informe de recepción ...';
       this.saveInforme();
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado factura, intentelo más tarde";
+      this.detalles.push("Ocurrió un error en el proceso de guardado de la factura...");
       console.log(error);
     });
   }
@@ -62,20 +66,20 @@ export class ProgresSaveFactura implements OnInit {
     formData.append('almacen', this.data.informe.almacen);
     formData.append('codigo', this.data.informe.codigo);
     formData.append('recepcionado_por', this.data.informe.recepcionado_por);
-    formData.append('entidad_suminitradora', this.data.informe.entidad_suminitradora);
+    formData.append('entidad_suminitradora', this.data.factura.entidad_suminitradora);
     formData.append('factura', this.data.informe.factura);
     formData.append('anno', this.data.informe.anno);
     formData.append('no_anno', this.data.informe.no_anno);
     this.api.addInformeRecepcion(formData).subscribe(result => {
       this.progreso = 60;
       let porcentaje = 40 / (this.data.productos.length * 2);
+      this.detalles.push("Informe de recepcion guardado satisfactoriamente, pasando a guardar los productos uno a uno...");
       this.mensaje_progreso = `Guardando productos 0/${this.data.productos.length}...`;
-      this.data.productos.forEach((producto: any, index: number) => {
-        this.saveProducto(producto, this.data.productos.length, porcentaje, index + 1);
-      });
+      this.saveProducto(this.data.productos[this.position_prod], this.data.productos.length, porcentaje, this.position_prod + 1);
 
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado informe, intentelo más tarde";
+      this.detalles.push("Ocurrió un error en el proceso de guardado del informe, intentelo más tarde");
       console.log(error);
     })
   }
@@ -93,12 +97,15 @@ export class ProgresSaveFactura implements OnInit {
     if (!producto.codigo_encontrado) {
       this.api.addProducto(formData).subscribe(result => {
         this.mensaje_progreso = `Guardando productos ${position}/${this.data.productos.length}...`;
+        this.detalles.push(`Producto: ${producto.producto_especifico} guardado satisfactoriamente, pasando a crearle tarjeta estiba...`);
         this.saveTarjetaEstiba(producto, total, porcentaje);
       }, error => {
         this.mensaje_progreso = "Ocurrió un error en el proceso de guardado producto, intentelo más tarde";
+        this.detalles.push("Ocurrió un error en el proceso de guardado del producto, intentelo más tarde");
       })
     }
     else {
+      this.detalles.push(`Producto: "${producto.producto_especifico}" ya esta en base de datos, pasando a crearle un historial de tarjeta estiba...`);
       this.saveHistorialTarjetaEstiba(producto, total, porcentaje);
     }
 
@@ -111,9 +118,11 @@ export class ProgresSaveFactura implements OnInit {
     formData.append('producto_especifico', producto.producto_especifico);
     formData.append('precio_unitario', producto.precio_unitario.toString());
     this.api.addTarjetasEstibas(formData).subscribe(result => {
+      this.detalles.push(`Tarjeta estiba: "${producto.codigo}"  creada satisfactoriamente, pasando a crearle un historial de tarjeta estiba...`);
       this.saveHistorialTarjetaEstiba(producto, total, porcentaje)
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado tarjeta estiba, intentelo más tarde";
+      this.detalles.push("Ocurrió un error en el proceso de guardado de la tarjeta de estiba, intentelo más tarde");
       console.log(error);
     })
   }
@@ -131,11 +140,12 @@ export class ProgresSaveFactura implements OnInit {
 
     this.api.addHistorialTarjetasEstibas(formData).subscribe(result => {
       console.log(result);
-
+      this.detalles.push(`Historial de tarjeta estiba: "${producto.codigo}" creado satisfactoriamente, pasando a crearle la factura producto...`);
       this.progreso += porcentaje;
       this.saveFacturaProducto(producto, total, porcentaje);
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado historial tarjeta estiba, intentelo más tarde";
+      this.detalles.push("Ocurrió un error en el proceso de guardado del historial de la tarjeta de estiba, intentelo más tarde");
       console.log(error);
     })
   }
@@ -152,15 +162,26 @@ export class ProgresSaveFactura implements OnInit {
       const position = this.data.productos.filter((e: any, i: number) => {
         if (e.codigo == producto.codigo) return i; else return 0
       })
-      console.log(position);
-      
       this.mensaje_progreso = `Guardando productos ${position}/${total}...`;
-      if (this.progreso == 100) {
-
-      }
+      this.detalles.push(`Factura producto: "${producto.codigo}" creado satisfactoriamente, pasando al siguiente producto...`);
+      this.verificar(porcentaje);
     }, error => {
+      this.verificar(porcentaje);
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado factura producto, intentelo más tarde";
+      this.detalles.push("Ocurrió un error en el proceso de guardado de la factura producto, intentelo más tarde");
       console.log(error);
     });
+  }
+
+  verificar(porcentaje: number) {
+    this.position_prod += 1;
+    if (this.position_prod < this.data.productos.length) {
+      
+      this.saveProducto(this.data.productos[this.position_prod], this.data.productos.length, porcentaje, this.position_prod + 1);
+    } else {
+      console.log('dasd');
+      
+      this.detalles.push('El proceso termino satisfactoriamente');
+    }
   }
 }

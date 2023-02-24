@@ -5,6 +5,21 @@
     </div>
     <mat-progress-bar mode="determinate" *ngIf="progreso<100" [value]="progreso"></mat-progress-bar>
     <p>{{mensaje_progreso}}</p>
+    <p>
+        <mat-accordion class="bg-darkest">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Detalles
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Aqui puedes ver el avance explicito
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p *ngFor="let item of detalles">{{item}}</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </p>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button>Aceptar</button>
