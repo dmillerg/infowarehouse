@@ -80,7 +80,10 @@ export class ProgresSaveFactura implements OnInit {
     }, error => {
       this.mensaje_progreso = "Ocurrió un error en el proceso de guardado informe, intentelo más tarde";
       this.detalles.push({message: "Ocurrió un error en el proceso de guardado del informe, intentelo más tarde", status: 'error'});
-      console.log(error);
+      this.detalles.push({message: "Eliminando factura creada", status: 'error'});
+      this.api.borrarFacturas(this.data.factura.codigo).subscribe(result=>{
+        this.detalles.push({message: "factura eliminada", status: 'error'});
+      });
     })
   }
 
@@ -102,6 +105,8 @@ export class ProgresSaveFactura implements OnInit {
       }, error => {
         this.mensaje_progreso = "Ocurrió un error en el proceso de guardado producto, intentelo más tarde";
         this.detalles.push({message: "Ocurrió un error en el proceso de guardado del producto, intentelo más tarde", status: 'error'});
+        this.position_prod+=1;
+        this.saveProducto(this.data.productos[this.position_prod],total, porcentaje, this.position_prod);
       })
     }
     else {
