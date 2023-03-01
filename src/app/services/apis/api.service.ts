@@ -209,7 +209,7 @@ export class ApiService {
    * @returns 
    */
   getLastNumberInformeRecepcion(): Observable<any> {
-    let direccion = this.url + 'tt';
+    let direccion = this.url + 'lastinforme';
     return this.http.get<any>(direccion);
   }
 

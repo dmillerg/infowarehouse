@@ -36,10 +36,9 @@ export class AddFacturasComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getLastNumberInformeRecepcion().subscribe(result => {
-      console.log(result);
-      if (result.length > 0)
-        this.data.no = result[0].no + 1; else this.data.no = '01'
-      this.data.no = Number(this.data.no) < 10 ? '0' + this.data.no : this.data.no;
+        this.data.no = result.no;
+      console.log(this.data.no);
+      
       this.data.no_anno = this.data.no + '-' + new Date().getFullYear();
     })
   }
