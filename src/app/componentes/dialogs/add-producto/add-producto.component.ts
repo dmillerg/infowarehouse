@@ -19,9 +19,9 @@ export class AddProductoComponent implements OnInit {
   producto_generico: string = '';
   producto_especifico: string = '';
   descripcion: string = '';
-  precio: string = '';
-  precio_unitario: string = '';
-  cantidad: string = '';
+  precio: number = 0;
+  precio_unitario: number = 0;
+  cantidad: number = 0;
 
   codigos: Producto[] = [];
   codigos_all: Producto[] = [];
@@ -35,6 +35,46 @@ export class AddProductoComponent implements OnInit {
 
   ngOnInit() {
     this.loadProductos();
+  }
+
+  disableButton() {
+    // console.log('1-',this.codigo == '' );
+    // console.log('2-',this.producto_generico == '');
+    // console.log('3-',this.producto_especifico == '');
+    // console.log('4-',this.descripcion == '');
+    // console.log('5-',isNaN(this.precio) );
+    // console.log('6-',typeof this.precio_unitario != 'number' || this.precio_unitario < 0);
+    // console.log('7-',this.cantidad>0);
+
+    return this.codigo == '' ||
+      this.producto_generico == '' ||
+      this.producto_especifico == '' ||
+      this.descripcion == '' ||
+      (typeof this.precio != 'number' || this.precio <= 0) ||
+      (typeof this.precio_unitario != 'number' || this.precio_unitario <= 0) ||
+      this.cantidad <= 0;
+  }
+
+  valid(tipo: string) {
+    switch (tipo) {
+      case 'precio':
+        console.log(typeof this.precio != 'number' || this.precio <= 0);
+        return typeof this.precio != 'number' || this.precio <= 0;
+      case 'precio_unitario':
+        return typeof this.precio_unitario != 'number' || this.precio_unitario <= 0;
+      case 'codigo':
+        return this.codigo == '';
+      case 'producto_generico':
+        return this.producto_generico == '';
+      case 'producto_especifico':
+        return this.producto_especifico == '';
+      case 'descripcion':
+        return this.descripcion == ''
+      case 'cantidad':
+        return this.cantidad <= 0;
+      default:
+        return false;
+    }
   }
 
   loadProductos() {
@@ -52,8 +92,8 @@ export class AddProductoComponent implements OnInit {
       this.producto_generico = this.codigos[0].producto_generico;
       this.producto_especifico = this.codigos[0].producto_especifico;
       this.descripcion = this.codigos[0].descripcion;
-      this.precio = this.codigos[0].precio.toString();
-      this.precio_unitario = this.codigos[0].precio_unitario.toString();
+      this.precio = this.codigos[0].precio;
+      this.precio_unitario = this.codigos[0].precio_unitario;
       this.codigo_encontrado = true;
     } else {
       this.codigo_encontrado = false;
@@ -66,9 +106,9 @@ export class AddProductoComponent implements OnInit {
     form.append('producto_generico', this.producto_generico);
     form.append('producto_especifico', this.producto_especifico);
     form.append('descripcion', this.descripcion);
-    form.append('precio', this.precio);
-    form.append('precio_unitario', this.precio_unitario);
-    form.append('cantidad', this.cantidad);
+    form.append('precio', this.precio.toString());
+    form.append('precio_unitario', this.precio_unitario.toString());
+    form.append('cantidad', this.cantidad.toString());
     // if (this.data.accion == 'add') {
     //   this.api.addProducto(form).subscribe((result) => {
     //     this.dialogRef.close(result);
@@ -78,16 +118,16 @@ export class AddProductoComponent implements OnInit {
     //     this.dialogRef.close(result);
     //   });
     // } else {
-      this.dialogRef.close({
-        codigo: this.codigo,
-        producto_generico: this.producto_generico,
-        producto_especifico: this.producto_especifico,
-        descripcion: this.descripcion,
-        precio: this.precio,
-        precio_unitario: this.precio_unitario,
-        cantidad: this.cantidad,
-        codigo_encontrado: this.codigo_encontrado,
-      });
+    this.dialogRef.close({
+      codigo: this.codigo,
+      producto_generico: this.producto_generico,
+      producto_especifico: this.producto_especifico,
+      descripcion: this.descripcion,
+      precio: this.precio,
+      precio_unitario: this.precio_unitario,
+      cantidad: this.cantidad,
+      codigo_encontrado: this.codigo_encontrado,
+    });
     // }
   }
 
