@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
-import { Factura } from 'src/app/models/factura';
-import { Producto } from 'src/app/models/producto';
 import { ApiService } from 'src/app/services/apis/api.service';
 
 @Component({
@@ -16,9 +15,12 @@ export class EditFacturaComponent implements OnInit {
   productos: any[]=[];
 
   constructor(private storage: SessionStorageService,
-    private api: ApiService) { }
+    private api: ApiService,
+    private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log('pro', this.rutaActiva.snapshot.params);
+    
     if (this.storage.retrieve('factura')) {
       this.factura = this.storage.retrieve('factura');
       this.convert();
@@ -42,7 +44,7 @@ export class EditFacturaComponent implements OnInit {
     }
     this.api.getFacturaProducto(this.factura.no_factura).subscribe(result=>{
       this.productos = result;
-      console.log(result);
+      console.log('productos de la factura',result);
       console.log(this.productos);
       
     })
