@@ -90,7 +90,7 @@
                     <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
             </p>
-            <div class="centrado-horizontal">
+            <div class="centrado-horizontal" *ngIf="buttons">
                 <button type="button" mat-button (click)="drawer.toggle()">
                     Productos ({{productos.length}})
                 </button>

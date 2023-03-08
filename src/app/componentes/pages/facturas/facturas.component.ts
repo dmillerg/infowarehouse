@@ -143,8 +143,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
   }
 
   editOrSee(item: any) {
-    this.storage.store('factura', item);
-    this.router.navigate(['editfactura']);
+    this.router.navigate([`editfactura/${item.no_factura}`]);
   }
 
 }

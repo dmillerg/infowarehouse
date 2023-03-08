@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row p-4"></div>
     <div class="row text-white">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <mat-card>
             <app-ficha-factura [data]="data" [productos]="productos"></app-ficha-factura>
             <!-- <mat-card-title>Actions Buttons</mat-card-title>
@@ -12,8 +12,8 @@
                 </mat-card-actions> -->
               </mat-card>
         </div>
-        <div class="col-lg-4">
-            <app-factura [data]="data"></app-factura>
+        <div class="col-lg-3">
+            <app-factura [data]="data" [buttons]="false"></app-factura>
         </div>
     </div>
 </div>

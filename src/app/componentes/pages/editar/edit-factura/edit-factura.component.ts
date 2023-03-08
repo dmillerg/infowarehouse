@@ -19,30 +19,24 @@ export class EditFacturaComponent implements OnInit {
     private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log('pro', this.rutaActiva.snapshot.params);
-    
-    if (this.storage.retrieve('factura')) {
-      this.factura = this.storage.retrieve('factura');
-      this.convert();
-    }
-    this.storage.observe('factura').subscribe(result => {
-      this.factura = result;
-      this.convert();
-    });
+    console.log('pro', this.rutaActiva.snapshot.params["no_factura"]);
+  this.getFactura()
   }
 
-  convert() {
-    this.data = {
-      empresa: this.factura.empresa,
-      codigo: this.factura.codigo,
-      factura: this.factura.no_factura,
-      entregado: this.factura.entregado_por,
-      facturado: this.factura.facturado_por,
-      importe: this.factura.importe,
-      entidad: this.factura.entidad_suministradora,
-      almacen: this.factura.almacen,
-    }
-    this.api.getFacturaProducto(this.factura.no_factura).subscribe(result=>{
+  getFactura(){
+    this.api.getFacturaByNo(this.rutaActiva.snapshot.params["no_factura"]).subscribe(result=>{
+      console.log(result);
+      this.data =  result[0]
+      this.data.entregado = this.data.entregado_por;
+      this.data.facturado = this.data.facturado_por;
+      this.data.entidad = this.data.entidad_suministradora;
+      this.getProductos();
+    })
+  }
+
+  getProductos() {
+   
+    this.api.getFacturaProducto(this.rutaActiva.snapshot.params["no_factura"]).subscribe(result=>{
       this.productos = result;
       console.log('productos de la factura',result);
       console.log(this.productos);

@@ -15,7 +15,7 @@ import { Usuario } from 'src/app/models/usuario';
   providedIn: 'root'
 })
 export class ApiService {
-  url: string = 'http://localhost:9706/apis/';
+  url: string = 'http://localhost:9707/apis/';
 
   constructor(
     private http: HttpClient,
@@ -69,6 +69,20 @@ export class ApiService {
     let direccion = this.url + 'factura';
     formData.append('token', this.storage.retrieve('user').token);
     return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtiene todos los datos de la factura
+   * @param no_factura 
+   * @returns 
+   */
+  getFacturaByNo(no_factura: string): Observable<any> {
+    let direccion = this.url + 'factura/' + no_factura;
+    return this.http.get<any>(direccion, {
+      params: {
+        token: this.storage.retrieve('user').token
+      }
+    });
   }
 
   /**
