@@ -1,4 +1,10 @@
-<app-topbar (emisor)="action($event)" [disable_delete]="addform"></app-topbar>
+<div class="container">
+  <div class="row py-1">
+    <app-topbar (emisor)="action($event)" [disable_delete]="addform" [tooltip_add_if]="true"></app-topbar>
+  </div>
+</div>
+
+
 <div class="centrado-vertical container" [@scaleAnimation]="'enter'" *ngIf='table'>
   <mat-form-field appearance="standard" class="w-100 px-2">
     <mat-label>Buscar</mat-label>

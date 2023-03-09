@@ -44,14 +44,14 @@
 
                 <mat-form-field appearance="legacy">
                     <mat-label>Codigo</mat-label>
-                    <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="data.codigo">
+                    <input matInput placeholder="Codigo" name="codigo" [(ngModel)]="data.codigo" [disabled]="edit">
                     <mat-icon matSuffix>code</mat-icon>
                     <mat-hint>Ingrese su codigo</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field appearance="legacy">
                     <mat-label>No. de factura</mat-label>
-                    <input matInput placeholder="factura" name="factura" [(ngModel)]="data.factura">
+                    <input matInput placeholder="factura" name="factura" [(ngModel)]="data.factura" [disabled]="edit">
                     <mat-icon matSuffix>assignment</mat-icon>
                     <mat-hint>Ingrese el numero de la factura</mat-hint>
                 </mat-form-field>

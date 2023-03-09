@@ -45,6 +45,7 @@ export class FacturaComponent implements OnInit {
   @Input() productos: any[] = [];
   @Input() add_button: boolean = true;
   @Input() preview_button: boolean = true;
+  @Input() edit: boolean = false;
   previsualizar: boolean = false;
 
   constructor(public dialog: MatDialog) { }
@@ -74,7 +75,8 @@ export class FacturaComponent implements OnInit {
   }
 
   deleteProducto(item: any) {
-    this.data.importe += item.precio * item.cantidad
+    this.data.importe -= item.precio * item.cantidad
     this.productos = this.productos.filter((e) => e.codigo != item.codigo);
+    this.data.productos = this.productos;
   }
 }

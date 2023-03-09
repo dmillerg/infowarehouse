@@ -1,8 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-1 d-flex flex-row">
-            <button class="btn-top" [matTooltip]="tooltip_add" [disabled]="disable_add" *ngIf="tooltip_add_if" (click)="action('agregar')"><mat-icon >note_add</mat-icon></button>
-            <button class="btn-top" [matTooltip]="tooltip_delete" [disabled]="disable_delete" *ngIf="tooltip_delete_if" (click)="action('eliminar')"><mat-icon>delete</mat-icon></button>
+            <button class="btn-top d-flex justify-content-center align-item-center" [matTooltip]="tooltip_back" [disabled]="disable_back" *ngIf="tooltip_back_if" (click)="action('back')"><mat-icon >arrow_back_ios</mat-icon></button>
+            <button class="btn-top d-flex justify-content-center align-item-center" [matTooltip]="tooltip_add" [disabled]="disable_add" *ngIf="tooltip_add_if" (click)="action('agregar')"><mat-icon >note_add</mat-icon></button>
+            <button class="btn-top d-flex justify-content-center align-item-center" [matTooltip]="tooltip_delete" [disabled]="disable_delete" *ngIf="tooltip_delete_if" (click)="action('eliminar')"><mat-icon>delete</mat-icon></button>
         </div>
     </div>
 </div>

@@ -31,6 +31,7 @@ export class FichaTarjetaEstibaComponent implements OnInit {
     precio_unitario: 0,
     cantidad: 0,
   };
+  @Input() edit: boolean = false;
   historial: HistorialEstiba[] = [];
 
   constructor(private api: ApiService) { }
@@ -38,23 +39,11 @@ export class FichaTarjetaEstibaComponent implements OnInit {
   ngOnInit(): void {
     this.api.listarHistorialTarjetasEstibas(this.producto.codigo).subscribe((result: any) => {
       console.log(result);
-      
-      if (result.length == 0) {
-        this.historial = [];
-        let histori: HistorialEstiba = {
-          fecha: new Date(),
-          clave: 'I/R',
-          no: this.data.no,
-          entrada: this.producto.cantidad.toString(),
-          salida: '-',
-          saldo: this.producto.cantidad,
-          firma: 'SAD',
-        }
-        this.historial.push(histori);
-      } else {
+
+      if (result.length > 0 && !this.edit) {
         this.historial = result;
         console.log(result);
-        
+
         let last = this.historial[this.historial.length - 1];
         let histori: HistorialEstiba = {
           fecha: new Date(),
@@ -67,10 +56,23 @@ export class FichaTarjetaEstibaComponent implements OnInit {
         }
         this.historial.push(histori);
         console.log(this.historial)
+
+      } else {
+        this.historial = [];
+        let histori: HistorialEstiba = {
+          fecha: new Date(),
+          clave: 'I/R',
+          no: this.data.no,
+          entrada: this.producto.cantidad.toString(),
+          salida: '-',
+          saldo: this.producto.cantidad,
+          firma: 'SAD',
+        }
+        this.historial.push(histori);
       }
-    }, error=>{
+    }, error => {
       console.log(error);
-      
+
     });
   }
 

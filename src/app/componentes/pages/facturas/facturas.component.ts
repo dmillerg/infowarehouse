@@ -79,7 +79,7 @@ export class FacturasComponent implements AfterViewInit, OnInit {
   constructor(private api: ApiService,
     public dialog: MatDialog,
     private toast: ToastrService,
-    private router: Router,
+    public router: Router,
     private storage: SessionStorageService) {
   }
 

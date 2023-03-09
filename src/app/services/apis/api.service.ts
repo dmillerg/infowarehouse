@@ -228,6 +228,16 @@ export class ApiService {
   }
 
   /**
+   * Obtiene el informe a partir del codigo de la factura
+   * @param codigo 
+   * @returns 
+   */
+  getInformeByFactura(codigo: string): Observable<Informe>{
+    let direccion = this.url + 'informe/' +codigo;
+    return this.http.get<Informe>(direccion, {params: {token: this.storage.retrieve('user').token}});
+  }
+
+  /**
    * Obtiene todos los productos asociados a una factura
    * @param no_factura de la factura a la cual buscar los productos
    * @returns 
