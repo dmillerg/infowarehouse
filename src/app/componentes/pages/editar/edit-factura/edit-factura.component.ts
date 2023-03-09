@@ -12,7 +12,7 @@ export class EditFacturaComponent implements OnInit {
 
   factura: any;
   data: any;
-  productos: any[]=[];
+  productos: any[] = [];
 
   constructor(private storage: SessionStorageService,
     private api: ApiService,
@@ -20,27 +20,29 @@ export class EditFacturaComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('pro', this.rutaActiva.snapshot.params["no_factura"]);
-  this.getFactura()
+    this.getFactura()
   }
 
-  getFactura(){
-    this.api.getFacturaByNo(this.rutaActiva.snapshot.params["no_factura"]).subscribe(result=>{
+  getFactura() {
+    this.api.getFacturaByNo(this.rutaActiva.snapshot.params["no_factura"]).subscribe(result => {
       console.log(result);
-      this.data =  result[0]
+      this.data = result[0]
       this.data.entregado = this.data.entregado_por;
       this.data.facturado = this.data.facturado_por;
       this.data.entidad = this.data.entidad_suministradora;
+      this.data.factura = this.data.no_factura;
       this.getProductos();
     })
   }
 
   getProductos() {
-   
-    this.api.getFacturaProducto(this.rutaActiva.snapshot.params["no_factura"]).subscribe(result=>{
+
+    this.api.getFacturaProducto(this.rutaActiva.snapshot.params["no_factura"]).subscribe(result => {
       this.productos = result;
-      console.log('productos de la factura',result);
+      this.data.productos = this.productos;
+      console.log('productos de la factura', result);
       console.log(this.productos);
-      
+
     })
   }
 

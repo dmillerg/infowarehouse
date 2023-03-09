@@ -90,11 +90,11 @@
                     <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
             </p>
-            <div class="centrado-horizontal" *ngIf="buttons">
-                <button type="button" mat-button (click)="drawer.toggle()">
+            <div class="centrado-horizontal">
+                <button type="button" mat-button (click)="drawer.toggle()"  *ngIf="add_button">
                     Productos ({{productos.length}})
                 </button>
-                <button type="button" mat-button (click)="previsualizar = !previsualizar">
+                <button type="button" mat-button (click)="previsualizar = !previsualizar"  *ngIf="preview_button">
                     {{previsualizar ? 'Esconder' : 'Previsualizar'}}
                 </button>
             </div>

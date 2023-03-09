@@ -43,7 +43,8 @@ export class FacturaComponent implements OnInit {
     importe: 0,
   };
   @Input() productos: any[] = [];
-  @Input() buttons: boolean = true;
+  @Input() add_button: boolean = true;
+  @Input() preview_button: boolean = true;
   previsualizar: boolean = false;
 
   constructor(public dialog: MatDialog) { }
