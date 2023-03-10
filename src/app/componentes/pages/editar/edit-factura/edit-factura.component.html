@@ -5,7 +5,7 @@
     <div class="row text-white" *ngIf="factura_view">
         <div class="col-lg-8">
             <mat-card>
-                <app-ficha-factura [data]="data" [productos]="productos"></app-ficha-factura>
+                <app-ficha-factura [data]="data" [productos]="data.productos"></app-ficha-factura>
             </mat-card>
         </div>
         <div class="col-lg-4">
